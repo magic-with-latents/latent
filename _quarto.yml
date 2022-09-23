@@ -1,0 +1,28 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "The Latent: Code the maths"
+  site-url: ""
+  description: "Welcome to The Latent, a place to learn Data Science, Machine Learning, and Deep Learning"
+  navbar:
+    right:
+      - text: Blog
+        href: blog.qmd 
+      - icon: github
+        href: https://github.com/
+      - icon: twitter
+        href: https://twitter.com/
+      - text: Resources
+        menu: 
+          - text: Kaggle Notebooks
+            href: https://www.kaggle.com/
+      - text: Archive
+        href: archive.qmd
+format:
+  html:
+    theme: theme.scss
+
+
+

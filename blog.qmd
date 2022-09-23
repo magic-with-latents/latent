@@ -1,0 +1,19 @@
+---
+listing:
+  contents: posts/**/*.qmd
+  sort: "date desc"
+  type: default
+  categories: true
+  sort-ui: false
+  filter-ui: false
+  fields: [date, reading-time, title, categories]
+  feed: false
+page-layout: full
+title-block-banner: false
+---
+
+# Blogposts
+
+##### [DDPMs series](ddpms-series.html)
+Learn about the fundamentals of Diffusion models. Not only you get to learn the
+underlying maths but also the corresponding code.

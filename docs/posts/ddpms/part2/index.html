@@ -1,0 +1,1217 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.1.251">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Aakash Kumar Nain (@A_K_Nain)">
+<meta name="dcterms.date" content="2022-08-03">
+
+<title>The Latent: Code the maths - All you need know about Gaussian distribution</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">The Latent: Code the maths</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../blog.html">Blog</a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/"><i class="bi bi-github" role="img">
+</i> 
+ </a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/"><i class="bi bi-twitter" role="img">
+</i> 
+ </a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-resources" role="button" data-bs-toggle="dropdown" aria-expanded="false">Resources</a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-resources">    
+        <li>
+    <a class="dropdown-item" href="https://www.kaggle.com/">
+ <span class="dropdown-text">Kaggle Notebooks</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../../../archive.html">Archive</a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#normal-distribution" id="toc-normal-distribution" class="nav-link active" data-scroll-target="#normal-distribution">1. Normal Distribution</a></li>
+  <li><a href="#univariate-normal-distribution" id="toc-univariate-normal-distribution" class="nav-link" data-scroll-target="#univariate-normal-distribution">2. Univariate Normal Distribution</a></li>
+  <li><a href="#multivariate-normal-distribution" id="toc-multivariate-normal-distribution" class="nav-link" data-scroll-target="#multivariate-normal-distribution">3. Multivariate Normal Distribution</a></li>
+  <li><a href="#covariance" id="toc-covariance" class="nav-link" data-scroll-target="#covariance">4. Covariance</a></li>
+  <li><a href="#covariance-matrix" id="toc-covariance-matrix" class="nav-link" data-scroll-target="#covariance-matrix">5. Covariance Matrix</a></li>
+  <li><a href="#isotropic-gaussian" id="toc-isotropic-gaussian" class="nav-link" data-scroll-target="#isotropic-gaussian">6. Isotropic Gaussian</a></li>
+  <li><a href="#conditional-distribution" id="toc-conditional-distribution" class="nav-link" data-scroll-target="#conditional-distribution">7. Conditional Distribution</a></li>
+  <li><a href="#convolution-of-probability-distributions" id="toc-convolution-of-probability-distributions" class="nav-link" data-scroll-target="#convolution-of-probability-distributions">8. Convolution of probability distributions</a></li>
+  <li><a href="#the-forward-process" id="toc-the-forward-process" class="nav-link" data-scroll-target="#the-forward-process">9. The Forward Process</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">All you need know about Gaussian distribution</h1>
+<p class="subtitle lead">DDPMs - Part 2</p>
+  <div class="quarto-categories">
+    <div class="quarto-category">diffusion models</div>
+    <div class="quarto-category">generative modelling</div>
+    <div class="quarto-category">deep learning</div>
+  </div>
+  </div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Aakash Kumar Nain (<a href="https:twitter.com/A_K_Nain"><span class="citation" data-cites="A_K_Nain">@A_K_Nain</span></a>) </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">August 3, 2022</p>
+    </div>
+  </div>
+    
+  </div>
+  
+
+</header>
+
+<details>
+<summary>
+Expand
+</summary>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> PIL <span class="im">import</span> Image</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> norm, multivariate_normal</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> plotly</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> plotly.graph_objects <span class="im">as</span> go</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plotly.subplots <span class="im">import</span> make_subplots</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>seed <span class="op">=</span> <span class="dv">1234</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>np.random.seed(seed)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>plt.style.use(<span class="st">"seaborn"</span>)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>SAVE_PLOT_DIR <span class="op">=</span> <span class="st">"../plots"</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">not</span> os.path.exists(SAVE_PLOT_DIR):</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    os.mkdir(SAVE_PLOT_DIR)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<p>Today we will talk about the <strong>Gaussian Distribution</strong> and its importance in understanding the <strong>Denoising Diffusion Models</strong> or <strong>DDPMs</strong> for short.</p>
+<p>We will cover the maths behind these concepts and will code them along the way. IMO the maths looks much scarier when presented in equations, but it becomes simple once you look at the code implementation. So, don’t be scared by the greek symbols used in the equations. Try to undersatnd the code. It will help you understand the concepts better. Also, most of the visualizations presented in this notebook are interactive. Without further ado, let’s start!</p>
+<section id="normal-distribution" class="level1">
+<h1>1. Normal Distribution</h1>
+<p>Also known as <strong>Gaussian</strong> Distribution, the normal distribution is one of the most widely used continuous probability distributions. The notation, <span class="math inline">\(\mathcal{N}(\mu, \sigma^{2})\)</span> , is commonly used to refer to a normal distribution. The parameter <span class="math inline">\(\mu\)</span> represents the <strong>mean</strong> or <strong>expected value</strong> of the distribution, while the parameter <span class="math inline">\(\sigma\)</span> is its <strong>standard deviation</strong>. The <strong>variance</strong> of the distribution is <span class="math inline">\(\sigma^{2}\)</span></p>
+<p>For a real-valued random variable <code>x</code>, the probability density function is defined as: <span class="math display">\[
+p(x; \mu, \sigma^{2}) = \frac{1}{\sigma \sqrt{2 \pi}} exp({\frac{-1}{2}(\frac {x - \mu}{\sigma})^{2}}) \tag {1}
+\]</span></p>
+<p><br></p>
+</section>
+<section id="univariate-normal-distribution" class="level1">
+<h1>2. Univariate Normal Distribution</h1>
+<p>When we deal with only one random variable, e.g.&nbsp;<code>x</code> in the above equation, we call the distribution a univariate normal distribution. Let’s code up the above equation and take an example of a univariate normal distribution.</p>
+<details>
+<summary>
+<b>Show the code</b>
+</summary>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_univariate_normal(x, mu, sigma):</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Generates a PDF for a Univariate Normal Distribution.</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">    Args:</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co">        x: Vector of values sorted in ascending order</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co">        mu: Mean of the Gaussian</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">        sigma: Standard Deviation of the Gaussian</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns:</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co">        A PDF</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">1</span> <span class="op">/</span> (sigma <span class="op">*</span> np.sqrt(<span class="dv">2</span> <span class="op">*</span> np.pi)) <span class="op">*</span> (np.exp(<span class="op">-</span>(x <span class="op">-</span> mu)<span class="op">**</span><span class="dv">2</span> <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> sigma<span class="op">**</span><span class="dv">2</span>)))</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Mean of the distribution</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>mu <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Standard deviation(SD for short)</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>sigma <span class="op">=</span> <span class="fl">1.0</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate a linspace for a random variable x</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>num_samples <span class="op">=</span> <span class="dv">100</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">3</span><span class="op">*</span>sigma <span class="op">+</span> mu, <span class="dv">3</span><span class="op">*</span>sigma <span class="op">+</span> mu, num<span class="op">=</span>num_samples)</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the value against the PDF</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> go.Figure(</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    data<span class="op">=</span>go.Scatter(</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>        x<span class="op">=</span>x,</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>        y<span class="op">=</span>get_univariate_normal(x, mu<span class="op">=</span>mu, sigma<span class="op">=</span>sigma),</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>        line<span class="op">=</span><span class="bu">dict</span>(width<span class="op">=</span><span class="dv">3</span>,color<span class="op">=</span><span class="st">"black"</span>),</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>        fill<span class="op">=</span><span class="st">"tonexty"</span>,</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>        fillcolor<span class="op">=</span><span class="st">"skyblue"</span>,</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>fig.add_annotation(x<span class="op">=</span>mu, y<span class="op">=-</span><span class="fl">0.001</span>, text<span class="op">=</span><span class="st">"Mean"</span>,showarrow<span class="op">=</span><span class="va">True</span>, arrowhead<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>fig.add_vline(x<span class="op">=</span>mu, line_width<span class="op">=</span><span class="dv">3</span>, line_dash<span class="op">=</span><span class="st">"dash"</span>, line_color<span class="op">=</span><span class="st">"green"</span>)</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>fig.update_layout(</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>    {</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>        <span class="st">"title"</span>: {</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>            <span class="st">'text'</span>: <span class="ss">f"Univariate Gaussian Distribution &lt;br&gt; μ: </span><span class="sc">{</span>mu<span class="sc">}</span><span class="ss">, σ</span><span class="ch">\u00b2</span><span class="ss">: </span><span class="sc">{</span>sigma<span class="op">**</span><span class="dv">2</span><span class="sc">}</span><span class="ss">"</span>,</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>            <span class="st">'y'</span>:<span class="fl">0.95</span>,</span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>            <span class="st">'x'</span>:<span class="fl">0.5</span>,</span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>            <span class="st">'xanchor'</span>: <span class="st">'center'</span>,</span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>            <span class="st">'yanchor'</span>: <span class="st">'top'</span>,</span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>            <span class="st">'font'</span>: <span class="bu">dict</span>(size<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>        },</span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>        <span class="st">"xaxis"</span>: {<span class="st">"title"</span>: <span class="st">"X"</span>},</span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>        <span class="st">"yaxis"</span>: {<span class="st">"title"</span>: <span class="st">"Probability Density"</span>},</span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>        <span class="st">"margin"</span>: <span class="bu">dict</span>(l<span class="op">=</span><span class="dv">0</span>, r<span class="op">=</span><span class="dv">0</span>, b<span class="op">=</span><span class="dv">0</span>, t<span class="op">=</span><span class="dv">50</span>)</span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>fig.write_html(os.path.join(SAVE_PLOT_DIR, <span class="st">"univariate_normal_example.html"</span>))</span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>fig.write_image(os.path.join(SAVE_PLOT_DIR, <span class="st">"univariate_normal_example.png"</span>))</span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>fig.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<iframe width="800" height="400" src="plots/univariate_normal_example.html">
+</iframe>
+<p>Moving the mean value shifts the distribution from right to left while changing sigma affects the shape of the distribution. As the value of sigma increases, the curve gets more and more flat. Let’s see that in action.</p>
+<details>
+<summary>
+<b>Show the code</b>
+</summary>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Random variable x</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="op">-</span><span class="fl">10.0</span>, <span class="fl">10.0</span>, <span class="dv">100</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Combination of mu and sigma. The first value</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># of any tuple represents mu while the second value</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># represents sigma here.</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>mu_sigma_combos <span class="op">=</span> [</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    [(<span class="dv">0</span>, <span class="dv">1</span>), (<span class="op">-</span><span class="dv">3</span>, <span class="dv">1</span>), (<span class="dv">3</span>, <span class="dv">1</span>)],</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    [(<span class="dv">0</span>, <span class="dv">1</span>), (<span class="dv">0</span>, <span class="dv">2</span>), (<span class="dv">0</span>, <span class="dv">4</span>)],</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Line colors and widths to be used</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co"># for different combinations</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>colors <span class="op">=</span> [<span class="st">"red"</span>, <span class="st">"black"</span>, <span class="st">"blue"</span>]</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>widths <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>subtitles <span class="op">=</span> [<span class="st">"Varying μ"</span>, <span class="st">"Varying σ"</span>]</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>_, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, sharex<span class="op">=</span><span class="va">False</span>, sharey<span class="op">=</span><span class="va">False</span>, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">5</span>), tight_layout<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, elem <span class="kw">in</span> <span class="bu">enumerate</span>(mu_sigma_combos):</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    legend <span class="op">=</span> []</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>    mus <span class="op">=</span> <span class="bu">set</span>()</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j, comb <span class="kw">in</span> <span class="bu">enumerate</span>(elem):</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>        mu, sigma <span class="op">=</span> comb</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>        mus.add(mu)</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>        legend.append(<span class="ss">f"μ: </span><span class="sc">{</span>mu<span class="sc">}</span><span class="ss">, σ</span><span class="ch">\u00b2</span><span class="ss">: </span><span class="sc">{</span>sigma<span class="op">**</span><span class="dv">2</span><span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>        ax[i].plot(x, get_univariate_normal(x, mu, sigma), linewidth<span class="op">=</span>widths[j], c<span class="op">=</span>colors[j])</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>        ax[i].tick_params(labelbottom<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>    ax[i].set_title(subtitles[i])</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>    ax[i].legend(legend, loc<span class="op">=</span><span class="st">"upper right"</span>)</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> mu <span class="kw">in</span> mus:</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>        ax[i].axvline(x<span class="op">=</span>mu, color<span class="op">=</span><span class="st">"green"</span>, linestyle<span class="op">=</span><span class="st">"--"</span>)</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>plt.suptitle(<span class="st">"Univariate Normal Distribution"</span>)</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>plt.savefig(</span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>    os.path.join(SAVE_PLOT_DIR, <span class="st">"univariate_with_dff_mu_sigma.png"</span>),</span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>    bbox_inches<span class="op">=</span><span class="st">'tight'</span></span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<p><img src="plots/univariate_with_dff_mu_sigma.png" class="img-fluid"></p>
+</section>
+<section id="multivariate-normal-distribution" class="level1">
+<h1>3. Multivariate Normal Distribution</h1>
+<p>Multivariate normal distribution is the extension of univariate normal distribution to the case where we deal with a real-valued <strong>vector input</strong> instead of a single real-valued random variable. Like in the univariate case, the multivariate normal distribution has associated parameters <span class="math inline">\(\mu\)</span> representing the <strong>mean vector</strong> and <span class="math inline">\(\Sigma\)</span> representing the <strong>covariance matrix</strong>.</p>
+<p>This is the probability density function for multivariate case: <span class="math display">\[
+p(x; \mu, \Sigma) = \frac{1}{(2\pi)^{d/2} \ \vert{\Sigma}\vert^{1/2}} \ exp \ (\frac{-1}{2}(x - \mu)^T \Sigma^{-1}(x - \mu))  \tag{2}
+\]</span></p>
+<ul>
+<li>Random Variable <span class="math inline">\(X = [x_{1}, \ x_{2}, \ x_{3}...]\)</span> is a <code>D</code>-dimensional vector</li>
+<li>Mean <span class="math inline">\(\mu = [\mu_{1}, \ \mu_{2}, \ \mu_{3}...]\)</span> is a <code>D</code>-dimensional vector</li>
+<li>Covariance Matrix <span class="math inline">\(\Sigma\)</span> is a <code>D X D</code> dimensional matrix</li>
+</ul>
+<p>If the vector <code>X</code> is 2-dimensional, then that distribution is also known as <strong>Bivariate Normal Distribution</strong>.</p>
+<p><strong>Note:</strong> We need two dimensions to visualize a univariate Gaussian, and three dimensions to visualize a bivariate Gaussian. Hence for visualization purposes, we will show everything with a <em>bivariate</em> Gaussian, which then, can be extended to <em>multivariate</em> cases. Let’s visualize a bivariate Gaussian. We will use <code>scipy.stats.multivariate_normal</code> to generate the probability density.</p>
+<details>
+<summary>
+<b>Show the code</b>
+</summary>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_multivariate_normal(</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    mu,</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    cov,</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    sample<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    sample_size<span class="op">=</span><span class="va">None</span>,</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    seed<span class="op">=</span><span class="va">None</span>,</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    gen_pdf<span class="op">=</span><span class="va">False</span>,</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    pos<span class="op">=</span><span class="va">None</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>):</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Builds a multivariate Gaussian Distribution.</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co">    </span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co">    Given the mean vector and the covariance matrix,</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co">    this function builds a multivariate Gaussian</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co">    distribution. You can sample from this distribution,</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="co">    and generate probability density for given positions.</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="co">    </span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="co">    Args:</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="co">        mu: Mean vector representing the mean values for</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="co">            the random variables</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="co">        cov: Covariance Matrix</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="co">        sample (bool): If sampling is required</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="co">        sample_size: Only applicable if sampling is required.</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="co">            Number of samples to extract from the distribution</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="co">        seed: Random seed to be passed for distribution, and sampling</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="co">        gen_pdf(bool): Whether to generate probability density</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="co">        pos: Applicable only if density is generated. Values for which</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a><span class="co">            density is generated</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns:</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a><span class="co">        1. A Multivariate distribution</span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a><span class="co">        2. Sampled data if `sample` is set to True else `None`</span></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a><span class="co">        3. Probability Density if `gen_pdf` is set to True else `None`</span></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 1. Multivariate distribution from given mu and cov</span></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>    dist <span class="op">=</span> multivariate_normal(mean<span class="op">=</span>mu, cov<span class="op">=</span>cov, seed<span class="op">=</span>seed)</span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 2. If sampling is required</span></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> sample:</span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>        samples <span class="op">=</span> dist.rvs(size<span class="op">=</span>sample_size, random_state<span class="op">=</span>seed)</span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>        samples <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 3. If density is required</span></span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> gen_pdf:</span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> pos <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>            <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">"`pos` is required for generating density!"</span>)</span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a>            pdf <span class="op">=</span> dist.pdf(pos)</span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a>        pdf <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> dist, samples, pdf</span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a><span class="co"># Mean of the random variables X1 and X2</span></span>
+<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a>mu_x1, mu_x2 <span class="op">=</span> <span class="dv">0</span>, <span class="dv">0</span></span>
+<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a><span class="co"># Standard deviation for the random variables X1 and X2</span></span>
+<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a>sigma_x1, sigma_x2 <span class="op">=</span> <span class="dv">1</span>, <span class="dv">1</span></span>
+<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a><span class="co"># Positions for which probability density is</span></span>
+<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a><span class="co"># to be generated</span></span>
+<span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a>x1, x2 <span class="op">=</span> np.mgrid[</span>
+<span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a>    (<span class="op">-</span><span class="fl">3.0</span> <span class="op">*</span> sigma_x1 <span class="op">+</span> mu_x1):(<span class="fl">3.0</span> <span class="op">*</span> sigma_x1 <span class="op">+</span> mu_x1): <span class="fl">0.1</span>,</span>
+<span id="cb4-66"><a href="#cb4-66" aria-hidden="true" tabindex="-1"></a>    (<span class="op">-</span><span class="fl">3.0</span> <span class="op">*</span> sigma_x2 <span class="op">+</span> mu_x2):(<span class="fl">3.0</span> <span class="op">*</span> sigma_x2 <span class="op">+</span> mu_x2): <span class="fl">0.1</span></span>
+<span id="cb4-67"><a href="#cb4-67" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb4-68"><a href="#cb4-68" aria-hidden="true" tabindex="-1"></a>pos <span class="op">=</span> np.dstack((x1, x2))</span>
+<span id="cb4-69"><a href="#cb4-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-70"><a href="#cb4-70" aria-hidden="true" tabindex="-1"></a><span class="co"># Mean vector</span></span>
+<span id="cb4-71"><a href="#cb4-71" aria-hidden="true" tabindex="-1"></a>mu <span class="op">=</span> [mu_x1, mu_x2]</span>
+<span id="cb4-72"><a href="#cb4-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-73"><a href="#cb4-73" aria-hidden="true" tabindex="-1"></a><span class="co"># Covariance between the two random variables</span></span>
+<span id="cb4-74"><a href="#cb4-74" aria-hidden="true" tabindex="-1"></a>cov_x1x2 <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb4-75"><a href="#cb4-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-76"><a href="#cb4-76" aria-hidden="true" tabindex="-1"></a><span class="co"># Covariance Matrix for our bivariate Gaussian distribution</span></span>
+<span id="cb4-77"><a href="#cb4-77" aria-hidden="true" tabindex="-1"></a>cov <span class="op">=</span> [[sigma_x1<span class="op">**</span><span class="dv">2</span>, cov_x1x2], [cov_x1x2, sigma_x2<span class="op">**</span><span class="dv">2</span>]]</span>
+<span id="cb4-78"><a href="#cb4-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-79"><a href="#cb4-79" aria-hidden="true" tabindex="-1"></a><span class="co"># Build distribution generate density</span></span>
+<span id="cb4-80"><a href="#cb4-80" aria-hidden="true" tabindex="-1"></a>sample <span class="op">=</span> get_multivariate_normal(</span>
+<span id="cb4-81"><a href="#cb4-81" aria-hidden="true" tabindex="-1"></a>        mu<span class="op">=</span>mu,</span>
+<span id="cb4-82"><a href="#cb4-82" aria-hidden="true" tabindex="-1"></a>        cov<span class="op">=</span>cov,</span>
+<span id="cb4-83"><a href="#cb4-83" aria-hidden="true" tabindex="-1"></a>        sample<span class="op">=</span><span class="va">False</span>,</span>
+<span id="cb4-84"><a href="#cb4-84" aria-hidden="true" tabindex="-1"></a>        seed<span class="op">=</span>seed,</span>
+<span id="cb4-85"><a href="#cb4-85" aria-hidden="true" tabindex="-1"></a>        gen_pdf<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb4-86"><a href="#cb4-86" aria-hidden="true" tabindex="-1"></a>        pos<span class="op">=</span>pos</span>
+<span id="cb4-87"><a href="#cb4-87" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb4-88"><a href="#cb4-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-89"><a href="#cb4-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-90"><a href="#cb4-90" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the bivariate normal density</span></span>
+<span id="cb4-91"><a href="#cb4-91" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> go.Figure(</span>
+<span id="cb4-92"><a href="#cb4-92" aria-hidden="true" tabindex="-1"></a>    go.Surface(</span>
+<span id="cb4-93"><a href="#cb4-93" aria-hidden="true" tabindex="-1"></a>        z<span class="op">=</span>sample[<span class="dv">2</span>],</span>
+<span id="cb4-94"><a href="#cb4-94" aria-hidden="true" tabindex="-1"></a>        x<span class="op">=</span>x1,</span>
+<span id="cb4-95"><a href="#cb4-95" aria-hidden="true" tabindex="-1"></a>        y<span class="op">=</span>x2,</span>
+<span id="cb4-96"><a href="#cb4-96" aria-hidden="true" tabindex="-1"></a>        colorscale<span class="op">=</span><span class="st">'Viridis'</span>,</span>
+<span id="cb4-97"><a href="#cb4-97" aria-hidden="true" tabindex="-1"></a>        showscale<span class="op">=</span><span class="va">False</span></span>
+<span id="cb4-98"><a href="#cb4-98" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb4-99"><a href="#cb4-99" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-100"><a href="#cb4-100" aria-hidden="true" tabindex="-1"></a>fig.update_layout(</span>
+<span id="cb4-101"><a href="#cb4-101" aria-hidden="true" tabindex="-1"></a>    {</span>
+<span id="cb4-102"><a href="#cb4-102" aria-hidden="true" tabindex="-1"></a>        <span class="st">"title"</span>: <span class="bu">dict</span>(</span>
+<span id="cb4-103"><a href="#cb4-103" aria-hidden="true" tabindex="-1"></a>            text<span class="op">=</span><span class="st">"Bivariate Distribution"</span>,</span>
+<span id="cb4-104"><a href="#cb4-104" aria-hidden="true" tabindex="-1"></a>            y<span class="op">=</span><span class="fl">0.95</span>,</span>
+<span id="cb4-105"><a href="#cb4-105" aria-hidden="true" tabindex="-1"></a>            x<span class="op">=</span><span class="fl">0.5</span>,</span>
+<span id="cb4-106"><a href="#cb4-106" aria-hidden="true" tabindex="-1"></a>            xanchor<span class="op">=</span><span class="st">"center"</span>,</span>
+<span id="cb4-107"><a href="#cb4-107" aria-hidden="true" tabindex="-1"></a>            yanchor<span class="op">=</span><span class="st">"top"</span>,</span>
+<span id="cb4-108"><a href="#cb4-108" aria-hidden="true" tabindex="-1"></a>            font<span class="op">=</span><span class="bu">dict</span>(size<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb4-109"><a href="#cb4-109" aria-hidden="true" tabindex="-1"></a>        ), </span>
+<span id="cb4-110"><a href="#cb4-110" aria-hidden="true" tabindex="-1"></a>        <span class="st">"scene"</span>:<span class="bu">dict</span>(</span>
+<span id="cb4-111"><a href="#cb4-111" aria-hidden="true" tabindex="-1"></a>            xaxis<span class="op">=</span><span class="bu">dict</span>(title<span class="op">=</span><span class="st">'x1'</span>),</span>
+<span id="cb4-112"><a href="#cb4-112" aria-hidden="true" tabindex="-1"></a>            yaxis<span class="op">=</span><span class="bu">dict</span>(title<span class="op">=</span><span class="st">'x2'</span>),</span>
+<span id="cb4-113"><a href="#cb4-113" aria-hidden="true" tabindex="-1"></a>            zaxis<span class="op">=</span><span class="bu">dict</span>(title<span class="op">=</span><span class="st">'Probability density'</span>)</span>
+<span id="cb4-114"><a href="#cb4-114" aria-hidden="true" tabindex="-1"></a>        ),</span>
+<span id="cb4-115"><a href="#cb4-115" aria-hidden="true" tabindex="-1"></a>        <span class="st">"xaxis"</span>: <span class="bu">dict</span>(title<span class="op">=</span><span class="st">"Values"</span>),</span>
+<span id="cb4-116"><a href="#cb4-116" aria-hidden="true" tabindex="-1"></a>        <span class="st">"yaxis"</span>: <span class="bu">dict</span>(title<span class="op">=</span><span class="st">"Probability Density"</span>),</span>
+<span id="cb4-117"><a href="#cb4-117" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb4-118"><a href="#cb4-118" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-119"><a href="#cb4-119" aria-hidden="true" tabindex="-1"></a>fig.write_html(os.path.join(SAVE_PLOT_DIR, <span class="st">"bivariate_normal_example.html"</span>))</span>
+<span id="cb4-120"><a href="#cb4-120" aria-hidden="true" tabindex="-1"></a>fig.write_image(os.path.join(SAVE_PLOT_DIR, <span class="st">"bivariate_normal_example.png"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<iframe width="800" height="800" src="plots/bivariate_normal_example.html">
+</iframe>
+<p>That’s an <strong>interactive plot</strong>. You can zoom in/out, and rotate the surface to see what the Gaussians look like. When you hover over the density, you will see black lines generating two univariate normals, one for <code>x1</code> and another for <code>x2</code></p>
+</section>
+<section id="covariance" class="level1">
+<h1>4. Covariance</h1>
+<p>In the last section, we introduced the term <code>covariance matrix</code>. Before we move on to the next section, it is important to understand the concept of covariance. Let’s say <code>X</code> and <code>Y</code> are two random variables. Covariance of <code>X</code> and <code>Y</code> is defined as:</p>
+<p><span class="math display">\[
+Cov(X, Y) = E[(X - E(X))(Y - E(Y))] = E[XY] - E[X]E[Y]  \tag{3}
+\]</span></p>
+<p>i.e.&nbsp;the covariance is the expected value of the product of their deviations from their individual expected values.</p>
+<p>So, what does <strong>covariance</strong> tell us? A lot…</p>
+<ol type="1">
+<li>Covariance gives a sense of how much two random variables as well their scales are <strong>linearly</strong> related</li>
+<li>Covariance captures only linear dependence and gives no information about other kind of relationships</li>
+<li>If the sign of the covariance is positive, then both variables tend to take on relatively high values simultaneously. If the sign of the covariance is negative, then one variable tends to take on a relatively high value at the times that the other takes on a relatively low value and vice versa.</li>
+<li>If two variables <code>X</code> and <code>Y</code> are <strong>independent</strong>, then <span class="math inline">\(Cov(X, Y)= 0\)</span> but the reverse isn’t true. Why? Because covariance doesn’t take into account non-linear relationships</li>
+</ol>
+</section>
+<section id="covariance-matrix" class="level1">
+<h1>5. Covariance Matrix</h1>
+<p>If <code>X</code> is a <code>N</code>-dimensional vector i.e.&nbsp;<span class="math inline">\(X = [x_{1}, \ x_{2}, \ x_{3}...x_{n}]\)</span>, the covariance matrix is a <code>N</code>X<code>N</code> matrix defined as:</p>
+<p><span class="math display">\[
+\begin{bmatrix}
+Cov(x_{1}x_{1}) &amp; \cdots &amp; Cov(x_{1}x_{n}) \\
+\vdots &amp; \ddots &amp; \vdots \\
+Cov(x_{n}x_{1}) &amp; \cdots &amp; Cov(x_{n}x_{n})
+\end{bmatrix}
+\]</span></p>
+<p>Each entry <span class="math inline">\((i, j)\)</span> in this matrix defines the covariance of two random variables of the vector. Also:</p>
+<p><span class="math display">\[
+Cov(x_{i}x_{j}) = Var(x_{i}) \ \ \ \{ i=j\}
+\]</span></p>
+<p>Let’s take an example to showcase zero covariance, positive covariance, and negative covariance between two random variables <code>x1</code> and <code>x2</code></p>
+<details>
+<summary>
+<b>Show the code</b>
+</summary>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Mean of the random variables X1 and X2</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>mu_x1, mu_x2 <span class="op">=</span> <span class="dv">0</span>, <span class="dv">0</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Standard deviation of the random variables X1 and X2</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>sigma_x1, sigma_x2 <span class="op">=</span> <span class="dv">1</span>, <span class="dv">1</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Number of samples to extract</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>sample_size <span class="op">=</span> <span class="dv">2000</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Positions for which probability density is</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co"># to be generated</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>x1, x2 <span class="op">=</span> np.mgrid[</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    (<span class="op">-</span><span class="fl">3.0</span> <span class="op">*</span> sigma_x1 <span class="op">+</span> mu_x1):(<span class="fl">3.0</span> <span class="op">*</span> sigma_x1 <span class="op">+</span> mu_x1): <span class="fl">0.1</span>,</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    (<span class="op">-</span><span class="fl">3.0</span> <span class="op">*</span> sigma_x2 <span class="op">+</span> mu_x2):(<span class="fl">3.0</span> <span class="op">*</span> sigma_x2 <span class="op">+</span> mu_x2): <span class="fl">0.1</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>pos <span class="op">=</span> np.dstack((x1, x2))</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Mean vector</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>mu <span class="op">=</span> [mu_x1, mu_x2]</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Case 1: Zero Covariance</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>cov_x1x2 <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>zero_cov <span class="op">=</span> [[sigma_x1<span class="op">**</span><span class="dv">2</span>, cov_x1x2], [cov_x1x2, sigma_x2<span class="op">**</span><span class="dv">2</span>]]</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Build distribution, sample and generate density</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>zero_cov_res <span class="op">=</span> get_multivariate_normal(</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>        mu<span class="op">=</span>mu,</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>        cov<span class="op">=</span>zero_cov,</span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>        sample<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>        sample_size<span class="op">=</span>sample_size,</span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>        seed<span class="op">=</span>seed,</span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>        gen_pdf<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>        pos<span class="op">=</span>pos</span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Case 2: Positive Covarinace</span></span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>cov_x1x2 <span class="op">=</span> <span class="fl">0.9</span></span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>pos_cov <span class="op">=</span> [[sigma_x1<span class="op">**</span><span class="dv">2</span>, cov_x1x2], [cov_x1x2, sigma_x2<span class="op">**</span><span class="dv">2</span>]]</span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a><span class="co"># Build distribution, sample and generate density</span></span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>pos_cov_res <span class="op">=</span> get_multivariate_normal(</span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>        mu<span class="op">=</span>mu,</span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a>        cov<span class="op">=</span>pos_cov,</span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a>        sample<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a>        sample_size<span class="op">=</span>sample_size,</span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a>        seed<span class="op">=</span>seed,</span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a>        gen_pdf<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a>        pos<span class="op">=</span>pos</span>
+<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a><span class="co"># Case 3: Negative Covarinace</span></span>
+<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a>cov_x1x2 <span class="op">=</span> <span class="op">-</span><span class="fl">0.9</span></span>
+<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a>neg_cov <span class="op">=</span> [[sigma_x1<span class="op">**</span><span class="dv">2</span>, cov_x1x2], [cov_x1x2, sigma_x2<span class="op">**</span><span class="dv">2</span>]]</span>
+<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a><span class="co"># Build distribution, sample and generate density</span></span>
+<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a>neg_cov_res <span class="op">=</span> get_multivariate_normal(</span>
+<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a>        mu<span class="op">=</span>mu,</span>
+<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a>        cov<span class="op">=</span>neg_cov,</span>
+<span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a>        sample<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a>        sample_size<span class="op">=</span>sample_size,</span>
+<span id="cb5-61"><a href="#cb5-61" aria-hidden="true" tabindex="-1"></a>        seed<span class="op">=</span>seed,</span>
+<span id="cb5-62"><a href="#cb5-62" aria-hidden="true" tabindex="-1"></a>        gen_pdf<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb5-63"><a href="#cb5-63" aria-hidden="true" tabindex="-1"></a>        pos<span class="op">=</span>pos</span>
+<span id="cb5-64"><a href="#cb5-64" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb5-65"><a href="#cb5-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-66"><a href="#cb5-66" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the covariances</span></span>
+<span id="cb5-67"><a href="#cb5-67" aria-hidden="true" tabindex="-1"></a>_, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">4</span>), sharex<span class="op">=</span><span class="va">True</span>, sharey<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb5-68"><a href="#cb5-68" aria-hidden="true" tabindex="-1"></a>samples <span class="op">=</span> [neg_cov_res[<span class="dv">1</span>], zero_cov_res[<span class="dv">1</span>], pos_cov_res[<span class="dv">1</span>]]</span>
+<span id="cb5-69"><a href="#cb5-69" aria-hidden="true" tabindex="-1"></a>titles <span class="op">=</span> [<span class="st">"Negative Covariance"</span>, <span class="st">"Zero Covariance"</span>, <span class="st">"Positive Covariance"</span>]</span>
+<span id="cb5-70"><a href="#cb5-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-71"><a href="#cb5-71" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">3</span>):</span>
+<span id="cb5-72"><a href="#cb5-72" aria-hidden="true" tabindex="-1"></a>    ax[i].scatter(samples[i][:, <span class="dv">0</span>], samples[i][:, <span class="dv">1</span>], c<span class="op">=</span><span class="st">"green"</span>)</span>
+<span id="cb5-73"><a href="#cb5-73" aria-hidden="true" tabindex="-1"></a>    ax[i].set_xlabel(<span class="st">"X1"</span>)</span>
+<span id="cb5-74"><a href="#cb5-74" aria-hidden="true" tabindex="-1"></a>    ax[i].set_ylabel(<span class="st">"X2"</span>)</span>
+<span id="cb5-75"><a href="#cb5-75" aria-hidden="true" tabindex="-1"></a>    ax[i].set_title(titles[i])</span>
+<span id="cb5-76"><a href="#cb5-76" aria-hidden="true" tabindex="-1"></a>    ax[i].tick_params(labelleft<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb5-77"><a href="#cb5-77" aria-hidden="true" tabindex="-1"></a>    ax[i].axvline(x<span class="op">=</span>mu[<span class="dv">0</span>], color<span class="op">=</span><span class="st">"blue"</span>, linestyle<span class="op">=</span><span class="st">"--"</span>)</span>
+<span id="cb5-78"><a href="#cb5-78" aria-hidden="true" tabindex="-1"></a>    ax[i].axhline(y<span class="op">=</span>mu[<span class="dv">1</span>], color<span class="op">=</span><span class="st">"red"</span>, linestyle<span class="op">=</span><span class="st">"--"</span>)</span>
+<span id="cb5-79"><a href="#cb5-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-80"><a href="#cb5-80" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb5-81"><a href="#cb5-81" aria-hidden="true" tabindex="-1"></a>plt.savefig(os.path.join(SAVE_PLOT_DIR, <span class="st">"covariance_pair_plot.png"</span>))</span>
+<span id="cb5-82"><a href="#cb5-82" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<p><img src="plots/covariance_pair_plot.png" class="img-fluid"></p>
+<p>The <code>blue</code> and <code>red</code> lines in the above plot represent the mean values of <code>x1</code> and <code>x2</code> respectively. Let’s visualize how the probability density surface changes with the covariance</p>
+<details>
+<summary>
+<b>Expand the code</b>
+</summary>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> go.Figure(</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    go.Surface(</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>        z<span class="op">=</span>neg_cov_res[<span class="dv">2</span>],</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>        x<span class="op">=</span>x1,</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>        y<span class="op">=</span>x2,</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>        colorscale<span class="op">=</span><span class="st">'Hot'</span>,</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>        showscale<span class="op">=</span><span class="va">False</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>fig.update_layout(</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    {</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>        <span class="st">"title"</span>: <span class="bu">dict</span>(</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>            text<span class="op">=</span><span class="ss">f"Bivariate Distribution&lt;br&gt;cov_x1x2: </span><span class="sc">{</span>neg_cov[<span class="dv">0</span>][<span class="dv">1</span>]<span class="sc">:.2f}</span><span class="ss">"</span>,</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>            y<span class="op">=</span><span class="fl">0.95</span>,</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>            x<span class="op">=</span><span class="fl">0.5</span>,</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>            xanchor<span class="op">=</span><span class="st">"center"</span>,</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>            yanchor<span class="op">=</span><span class="st">"top"</span>,</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>            font<span class="op">=</span><span class="bu">dict</span>(size<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>        ), </span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>        <span class="st">"scene"</span>:<span class="bu">dict</span>(</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>            xaxis<span class="op">=</span><span class="bu">dict</span>(title<span class="op">=</span><span class="st">'X1'</span>),</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>            yaxis<span class="op">=</span><span class="bu">dict</span>(title<span class="op">=</span><span class="st">'X2'</span>),</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>            zaxis<span class="op">=</span><span class="bu">dict</span>(title<span class="op">=</span><span class="st">'Probability density'</span>)</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>        ),</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>        <span class="st">"xaxis"</span>: <span class="bu">dict</span>(title<span class="op">=</span><span class="st">"Values"</span>),</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>        <span class="st">"yaxis"</span>: <span class="bu">dict</span>(title<span class="op">=</span><span class="st">"Probability Density"</span>),</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>fig.write_html(os.path.join(SAVE_PLOT_DIR, <span class="st">"bivariate_negative_covariance_density.html"</span>))</span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>fig.write_image(os.path.join(SAVE_PLOT_DIR, <span class="st">"bivariate_negative_covariance_density.png"</span>))</span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>fig.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<iframe width="800" height="800" src="plots/bivariate_negative_covariance_density.html">
+</iframe>
+<details>
+<summary>
+<b>Show the code</b>
+</summary>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> go.Figure(</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    go.Surface(</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>        z<span class="op">=</span>zero_cov_res[<span class="dv">2</span>],</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>        x<span class="op">=</span>x1,</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>        y<span class="op">=</span>x2,</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>        colorscale<span class="op">=</span><span class="st">'Viridis'</span>,</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>        showscale<span class="op">=</span><span class="va">False</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>fig.update_layout(</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    {</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>        <span class="st">"title"</span>: <span class="bu">dict</span>(</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>            text<span class="op">=</span><span class="ss">f"Bivariate Distribution&lt;br&gt;cov_x1x2: </span><span class="sc">{</span>zero_cov[<span class="dv">0</span>][<span class="dv">1</span>]<span class="sc">:.2f}</span><span class="ss">"</span>,</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>            y<span class="op">=</span><span class="fl">0.95</span>,</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>            x<span class="op">=</span><span class="fl">0.5</span>,</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>            xanchor<span class="op">=</span><span class="st">"center"</span>,</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>            yanchor<span class="op">=</span><span class="st">"top"</span>,</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>            font<span class="op">=</span><span class="bu">dict</span>(size<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>        ), </span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>        <span class="st">"scene"</span>:<span class="bu">dict</span>(</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>            xaxis<span class="op">=</span><span class="bu">dict</span>(title<span class="op">=</span><span class="st">'X1'</span>),</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>            yaxis<span class="op">=</span><span class="bu">dict</span>(title<span class="op">=</span><span class="st">'X2'</span>),</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>            zaxis<span class="op">=</span><span class="bu">dict</span>(title<span class="op">=</span><span class="st">'Probability density'</span>)</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>        ),</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>        <span class="st">"xaxis"</span>: <span class="bu">dict</span>(title<span class="op">=</span><span class="st">"Values"</span>),</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>        <span class="st">"yaxis"</span>: <span class="bu">dict</span>(title<span class="op">=</span><span class="st">"Probability Density"</span>),</span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>fig.write_html(os.path.join(SAVE_PLOT_DIR, <span class="st">"bivariate_zero_covariance_density.html"</span>))</span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>fig.write_image(os.path.join(SAVE_PLOT_DIR, <span class="st">"bivariate_zero_covariance_density.png"</span>))</span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>fig.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<iframe width="800" height="800" src="plots/bivariate_zero_covariance_density.html">
+</iframe>
+<details>
+<summary>
+<b>Show the code</b>
+</summary>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> go.Figure(</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    go.Surface(</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>        z<span class="op">=</span>pos_cov_res[<span class="dv">2</span>],</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>        x<span class="op">=</span>x1,</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>        y<span class="op">=</span>x2,</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>        showscale<span class="op">=</span><span class="va">False</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>fig.update_layout(</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    {</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>        <span class="st">"title"</span>: <span class="bu">dict</span>(</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>            text<span class="op">=</span><span class="ss">f"Bivariate Distribution&lt;br&gt;cov_x1x2: </span><span class="sc">{</span>pos_cov[<span class="dv">0</span>][<span class="dv">1</span>]<span class="sc">:.2f}</span><span class="ss">"</span>,</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>            y<span class="op">=</span><span class="fl">0.95</span>,</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>            x<span class="op">=</span><span class="fl">0.5</span>,</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>            xanchor<span class="op">=</span><span class="st">"center"</span>,</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>            yanchor<span class="op">=</span><span class="st">"top"</span>,</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>            font<span class="op">=</span><span class="bu">dict</span>(size<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>        ), </span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>        <span class="st">"scene"</span>:<span class="bu">dict</span>(</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>            xaxis<span class="op">=</span><span class="bu">dict</span>(title<span class="op">=</span><span class="st">'X1'</span>),</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>            yaxis<span class="op">=</span><span class="bu">dict</span>(title<span class="op">=</span><span class="st">'X2'</span>),</span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>            zaxis<span class="op">=</span><span class="bu">dict</span>(title<span class="op">=</span><span class="st">'Probability density'</span>)</span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>        ),</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>        <span class="st">"xaxis"</span>: <span class="bu">dict</span>(title<span class="op">=</span><span class="st">"Values"</span>),</span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>        <span class="st">"yaxis"</span>: <span class="bu">dict</span>(title<span class="op">=</span><span class="st">"Probability Density"</span>),</span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>fig.write_html(os.path.join(SAVE_PLOT_DIR, <span class="st">"bivariate_positive_covariance_density.html"</span>))</span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>fig.write_image(os.path.join(SAVE_PLOT_DIR, <span class="st">"bivariate_positive_covariance_density.png"</span>))</span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>fig.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<iframe width="800" height="800" src="plots/bivariate_positive_covariance_density.html">
+</iframe>
+<p>A few things to note in the above surface plots:</p>
+<ol type="1">
+<li>The plot with zero covariance is circular in every direction.</li>
+<li>The plots with negative and positive covariances are more flattened on the 45-degree line, and are somewhat in a perpendicular direction to that line visually.</li>
+</ol>
+</section>
+<section id="isotropic-gaussian" class="level1">
+<h1>6. Isotropic Gaussian</h1>
+<p>An isotropic Gaussian is one where the covariance matrix <span class="math inline">\(\Sigma\)</span> can be represented in this form: <span class="math display">\[
+\Sigma = \sigma^2 I  \tag{4}
+\]</span></p>
+<ol type="1">
+<li><span class="math inline">\(I\)</span> is the Identity matrix</li>
+<li><span class="math inline">\(\sigma^2\)</span> is the scalar variance</li>
+</ol>
+<p><strong>Q</strong>: Why do we want to represent the covarince matrix in this form?<br> <strong>A</strong>: As the dimensions of a multivariate Gaussian grows, the <strong>mean</strong> <span class="math inline">\(\mu\)</span> follows a linear growth where the <strong>covarince matrix</strong> <span class="math inline">\(\Sigma\)</span> follows quadratic growth in terms of number of parameters. This quadratic growth isn’t computation friendly. A <strong>diagonal covariance matrix</strong> makes things much easier</p>
+<p>A few things to note about isotropic Gaussian:</p>
+<ol type="1">
+<li><p><em>Eq. (4)</em> represents a diagonal matrix multiplied by a scalar variance. This means that the <strong>variance</strong> along each dimension is equal. Hence an <em>isotropic multivariate Gaussian</em> is <strong>circular</strong> or <strong>spherical</strong>.</p></li>
+<li><p>We discussed that <code>Cov(x1, x2)=0</code> doesn’t mean <code>x1</code> and <code>x2</code> are independent but if the distribution is <strong>multivariate normal</strong> and <code>Cov(x1, x2)=0</code>, it implies that <code>x1</code> and <code>x2</code> are independent.</p></li>
+<li><p>If the multivariate distribution is isotropic, that means: i. Covariance Matrix is diagonal ii. The distribution can be represented as a product of univariate Gaussians i.e. P(X) = P(x1)P(x2)..</p></li>
+</ol>
+<p>Let’s take an example of an isotropic normal</p>
+<details>
+<summary>
+<b>Show the code</b>
+</summary>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Mean of the random variables X1 and X2</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>mu_x1, mu_x2 <span class="op">=</span> <span class="dv">0</span>, <span class="dv">0</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Standard deviation of the random variables X1 and X2</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Remember the std. is going to be the same</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co"># along all the dimensions.</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>sigma_x1 <span class="op">=</span> sigma_x2 <span class="op">=</span> <span class="dv">2</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Number of samples to extract</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>sample_size <span class="op">=</span> <span class="dv">5000</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Positions for which probability density is</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="co"># to be generated</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>x1, x2 <span class="op">=</span> np.mgrid[</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>    (<span class="op">-</span><span class="fl">3.0</span> <span class="op">*</span> sigma_x1 <span class="op">+</span> mu_x1):(<span class="fl">3.0</span> <span class="op">*</span> sigma_x1 <span class="op">+</span> mu_x1): <span class="fl">0.1</span>,</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>    (<span class="op">-</span><span class="fl">3.0</span> <span class="op">*</span> sigma_x2 <span class="op">+</span> mu_x2):(<span class="fl">3.0</span> <span class="op">*</span> sigma_x2 <span class="op">+</span> mu_x2): <span class="fl">0.1</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>pos <span class="op">=</span> np.dstack((x1, x2))</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Mean vector</span></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>mu <span class="op">=</span> [mu_x1, mu_x2]</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Because the covariance matrix of an multivaraite isotropic</span></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a><span class="co"># gaussian is a diagonal matrix, hence the covariance for </span></span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a><span class="co"># the dimension will be zero.</span></span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>cov_x1x2 <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>cov <span class="op">=</span> [[sigma_x1<span class="op">**</span><span class="dv">2</span>, cov_x1x2], [cov_x1x2, sigma_x2<span class="op">**</span><span class="dv">2</span>]]</span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>isotropic_gaussian <span class="op">=</span> get_multivariate_normal(</span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>                        mu<span class="op">=</span>mu,</span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>                        cov<span class="op">=</span>cov,</span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>                        sample<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>                        sample_size<span class="op">=</span>sample_size,</span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>                        seed<span class="op">=</span>seed,</span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>                        gen_pdf<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>                        pos<span class="op">=</span>pos</span>
+<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a>                    )</span>
+<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> make_subplots(</span>
+<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a>    rows<span class="op">=</span><span class="dv">1</span>, cols<span class="op">=</span><span class="dv">2</span>,</span>
+<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a>    shared_yaxes<span class="op">=</span><span class="va">False</span>,</span>
+<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a>    shared_xaxes<span class="op">=</span><span class="va">False</span>,</span>
+<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a>    specs<span class="op">=</span>[[{<span class="st">'type'</span>: <span class="st">'scatter'</span>}, {<span class="st">'type'</span>: <span class="st">'surface'</span>}]],</span>
+<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a>    subplot_titles<span class="op">=</span>(</span>
+<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Covariance x1_x2 = 0.0"</span>,</span>
+<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"mu_x1: </span><span class="sc">{</span>mu_x1<span class="sc">}</span><span class="ss"> sigma_x1: </span><span class="sc">{</span>sigma_x1<span class="op">**</span><span class="dv">2</span><span class="sc">}</span><span class="ss"> &lt;br&gt;mu_x2: </span><span class="sc">{</span>mu_x2<span class="sc">}</span><span class="ss"> sigma_x2: </span><span class="sc">{</span>sigma_x2<span class="op">**</span><span class="dv">2</span><span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb9-51"><a href="#cb9-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-52"><a href="#cb9-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-53"><a href="#cb9-53" aria-hidden="true" tabindex="-1"></a>fig.add_trace(</span>
+<span id="cb9-54"><a href="#cb9-54" aria-hidden="true" tabindex="-1"></a>    go.Scatter(</span>
+<span id="cb9-55"><a href="#cb9-55" aria-hidden="true" tabindex="-1"></a>        x<span class="op">=</span>isotropic_gaussian[<span class="dv">1</span>][:, <span class="dv">0</span>],</span>
+<span id="cb9-56"><a href="#cb9-56" aria-hidden="true" tabindex="-1"></a>        y<span class="op">=</span>isotropic_gaussian[<span class="dv">1</span>][:, <span class="dv">1</span>],</span>
+<span id="cb9-57"><a href="#cb9-57" aria-hidden="true" tabindex="-1"></a>        mode<span class="op">=</span><span class="st">'markers'</span>,</span>
+<span id="cb9-58"><a href="#cb9-58" aria-hidden="true" tabindex="-1"></a>        marker<span class="op">=</span><span class="bu">dict</span>(size<span class="op">=</span><span class="dv">5</span>, color<span class="op">=</span><span class="st">"green"</span>),</span>
+<span id="cb9-59"><a href="#cb9-59" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb9-60"><a href="#cb9-60" aria-hidden="true" tabindex="-1"></a>    row<span class="op">=</span><span class="dv">1</span>, col<span class="op">=</span><span class="dv">1</span></span>
+<span id="cb9-61"><a href="#cb9-61" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb9-62"><a href="#cb9-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-63"><a href="#cb9-63" aria-hidden="true" tabindex="-1"></a>fig.add_trace(</span>
+<span id="cb9-64"><a href="#cb9-64" aria-hidden="true" tabindex="-1"></a>    go.Surface(</span>
+<span id="cb9-65"><a href="#cb9-65" aria-hidden="true" tabindex="-1"></a>        z<span class="op">=</span>isotropic_gaussian[<span class="dv">2</span>],</span>
+<span id="cb9-66"><a href="#cb9-66" aria-hidden="true" tabindex="-1"></a>        x<span class="op">=</span>x1,</span>
+<span id="cb9-67"><a href="#cb9-67" aria-hidden="true" tabindex="-1"></a>        y<span class="op">=</span>x2,</span>
+<span id="cb9-68"><a href="#cb9-68" aria-hidden="true" tabindex="-1"></a>        colorscale<span class="op">=</span><span class="st">'RdBu'</span>,</span>
+<span id="cb9-69"><a href="#cb9-69" aria-hidden="true" tabindex="-1"></a>        showscale<span class="op">=</span><span class="va">False</span></span>
+<span id="cb9-70"><a href="#cb9-70" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb9-71"><a href="#cb9-71" aria-hidden="true" tabindex="-1"></a>    row<span class="op">=</span><span class="dv">1</span>, col<span class="op">=</span><span class="dv">2</span></span>
+<span id="cb9-72"><a href="#cb9-72" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb9-73"><a href="#cb9-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-74"><a href="#cb9-74" aria-hidden="true" tabindex="-1"></a>fig.update_layout(</span>
+<span id="cb9-75"><a href="#cb9-75" aria-hidden="true" tabindex="-1"></a>    {</span>
+<span id="cb9-76"><a href="#cb9-76" aria-hidden="true" tabindex="-1"></a>        <span class="st">"scene"</span>:<span class="bu">dict</span>(</span>
+<span id="cb9-77"><a href="#cb9-77" aria-hidden="true" tabindex="-1"></a>            xaxis<span class="op">=</span><span class="bu">dict</span>(title<span class="op">=</span><span class="st">'X1'</span>),</span>
+<span id="cb9-78"><a href="#cb9-78" aria-hidden="true" tabindex="-1"></a>            yaxis<span class="op">=</span><span class="bu">dict</span>(title<span class="op">=</span><span class="st">'X2'</span>),</span>
+<span id="cb9-79"><a href="#cb9-79" aria-hidden="true" tabindex="-1"></a>            zaxis<span class="op">=</span><span class="bu">dict</span>(title<span class="op">=</span><span class="st">'Probability density'</span>)</span>
+<span id="cb9-80"><a href="#cb9-80" aria-hidden="true" tabindex="-1"></a>        ),</span>
+<span id="cb9-81"><a href="#cb9-81" aria-hidden="true" tabindex="-1"></a>        <span class="st">"xaxis"</span>: {<span class="st">"title"</span>: <span class="st">"X1"</span>},</span>
+<span id="cb9-82"><a href="#cb9-82" aria-hidden="true" tabindex="-1"></a>        <span class="st">"yaxis"</span>: {<span class="st">"title"</span>: <span class="st">"X2"</span>},</span>
+<span id="cb9-83"><a href="#cb9-83" aria-hidden="true" tabindex="-1"></a>        <span class="st">"title"</span>: {<span class="st">"text"</span>: <span class="st">"Isotropic Gaussian"</span>, <span class="st">"x"</span>:<span class="fl">0.5</span>, <span class="st">"font"</span>:<span class="bu">dict</span>(size<span class="op">=</span><span class="dv">20</span>)}</span>
+<span id="cb9-84"><a href="#cb9-84" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb9-85"><a href="#cb9-85" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb9-86"><a href="#cb9-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-87"><a href="#cb9-87" aria-hidden="true" tabindex="-1"></a>fig.write_html(os.path.join(SAVE_PLOT_DIR, <span class="st">"isotropic_gaussian.html"</span>))</span>
+<span id="cb9-88"><a href="#cb9-88" aria-hidden="true" tabindex="-1"></a>fig.write_image(os.path.join(SAVE_PLOT_DIR, <span class="st">"isotropic_gaussian.png"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<iframe width="800" height="500" src="plots/isotropic_gaussian.html">
+</iframe>
+</section>
+<section id="conditional-distribution" class="level1">
+<h1>7. Conditional Distribution</h1>
+<p>Let’s say we have a multivariate distribution over <code>x</code> where <span class="math display">\[
+x = \begin{bmatrix}x_{1}\\x_{2}\end{bmatrix} \\
+\mu = \begin{bmatrix}\mu_{1}\\\mu_{2}\end{bmatrix} \\
+\Sigma = \begin{bmatrix}\Sigma_{11} &amp; \Sigma_{12} \\ \Sigma_{21} &amp; \Sigma_{22}\end{bmatrix}
+\]</span></p>
+<p>Then the distribution of <code>x1</code> conditional on <code>x2=a</code> is multivariate normal:</p>
+<p><span class="math display">\[
+p(x1 | x2 = a) \sim N(\bar\mu, \bar\Sigma) \ \ \ \text  {where:}
+\]</span></p>
+<p><span class="math display">\[
+\bar\mu = \mu_{1} + \ \Sigma_{12}\Sigma_{22}^{-1}(a - \mu_{2}) \tag{5}
+\]</span> <span class="math display">\[
+\bar\Sigma = \Sigma_{11} - \ \Sigma_{12}\Sigma_{22}^{-1}\Sigma_{21} \tag{6}
+\]</span></p>
+<p>But why are we discussing the conditional distribution? Do you need to remember these equations?</p>
+<p>Well, first and foremost you don’t have to mug up any of these equations. You can find them easily on Wikipedia. But there is a reason why we are discussing the conditional distributions here. Let’s say you have a process that takes the form of a <a href="https://setosa.io/ev/markov-chains/"><strong>Markov Chain</strong></a>. For example, the forward process in <strong>Diffusion Models</strong> is one example of such a sequence. Let’s write down the equation for the same. <span class="math display">\[
+q(x_{1:T}\vert x_{0}) := \prod_{t=1}^{T}q(x_{t}\vert x_{t-1}) :=\prod_{t=1}^{T}\mathcal{N}(x_{t};\sqrt{1-\beta_{t}} x_{t-1},\ \beta_{t}\bf I) \tag{7}
+\]</span></p>
+<p>This equation tells us a few things:</p>
+<ol type="1">
+<li>The forward process is a Markov Chain where the sample at the present step depends only on the sample at the previous timestep.</li>
+<li>The covariance matrix is <strong>diagonal</strong></li>
+<li>At each timestep in this sequence, we gradually <strong>add</strong> Gaussian noise. But this isn’t very clear from the equation where is this addition taking place, right?</li>
+<li>The term <span class="math inline">\(\beta\)</span> represents the variance at a <em>particular timestep <code>t</code></em> such that <span class="math inline">\(0 &lt; \beta_{1} &lt; \beta_{2} &lt; \beta_{3} &lt; ... &lt; \beta_{T} &lt; 1\)</span></li>
+</ol>
+<p>To understand the last point, let’s make some assumptions to simplify the eq (7).<br> 1. We will ignore the variance schedule <span class="math inline">\(\beta\)</span> for now. We can rewrite the above equation as: <span class="math display">\[q(x_{1:T}\vert x_{0}) := \prod_{t=1}^{T}q(x_{t}\vert x_{t-1}) :=\prod_{t=1}^{T}\mathcal{N}(x_{t}; x_{t-1},\ \bf I)  \tag{8}\]</span> 2. We will consider <code>x</code> as a univariate normal. This assumption is made only to give readers a better understanding of the conditional Gaussian case. The same concept extends to multivariate normal.</p>
+<p>With the above assumptions in mind, combined with the <code>Law of total probability</code>, we can write the equation as:</p>
+<p><span class="math display">\[p(x_{t}) = \int p(x_{t} \vert \ x_{t-1})p(x_{t-1})dx_{t-1} \tag {9}\]</span></p>
+<p>Using <em>(8)</em>, we can rewrite this as: <span class="math display">\[p(x_{t}) = \int \mathcal{N}(x_{t}; \ x_{t-1}, 1) p(x_{t-1})dx_{t-1} \tag {10}\]</span></p>
+<p>Because we are dealing with univariate normal, the identity matrix is nothing but a scalar value of 1. Moving forward, we can shift the terms in the above equation like this: <span class="math display">\[p(x_{t}) = \int \mathcal{N}(x_{t} - x_{t-1}; \ 0, 1) p(x_{t-1})dx_{t-1} \tag {11}\]</span></p>
+<p>Notice two things that we got by this shift: 1. The mean and the variance values of the distribution on the right-hand side are <code>0</code> and <code>1</code> respectively. 2. If you look closely at the term on the RHS in the above equation, you will notice that it is the definition of <strong>convolution</strong>.</p>
+<p>Combining the above two facts, we can rewrite <em>(11)</em> as: <span class="math display">\[p(x_{t}) = \mathcal{N}(0, 1) \ * \ p(x_{t-1}) \tag {12}\]</span></p>
+<p><strong>Property</strong>: The convolution of individual distributions of two or more random variables equals the sum of the random variables.</p>
+<p><span class="math display">\[ \Longrightarrow x_{t} = \mathcal{N}(0, 1) \ + \ x_{t-1} \tag {13}\]</span></p>
+<p>We will prove the above property in the next section, but this is one of the things that you should remember. Also, we hope that it is clear now why conditioned distributions in the forward process of Diffusion models are equivalent to “adding Gaussian noise” to previous timesteps. Don’t worry about the diffusion models related equations and terms like <code>variance schedule</code>. We will talk about them in detail in the upcoming notebooks.</p>
+</section>
+<section id="convolution-of-probability-distributions" class="level1">
+<h1>8. Convolution of probability distributions</h1>
+<p>In the last section we stated that the convolution of individual distributions of two or more random variables equals the sum of the random variables. To prove this, we will take an example of two normally distributed random variables <code>X</code> and <code>Y</code>. If <code>X</code> and <code>Y</code> are two normally distributed independent random variables such that</p>
+<p><span class="math display">\[
+X \sim \mathcal{N}(\mu_{1}, \sigma_{1}^2) \\
+Y \sim \mathcal{N}(\mu_{2}, \sigma_{2}^2) \\
+\]</span></p>
+<p><span class="math inline">\(\text{if} \ Z = X + Y \Longrightarrow Z \sim \mathcal{N}(\mu_{1} + \mu_{2}, \sigma_{1}^2 +\sigma_{2}^2) \tag{14}\)</span></p>
+<p>Our goal is to prove that if we convolve the PDFs of <code>X</code> and <code>Y</code>, then the resulting distribution would be identical to the distribution of <code>Z</code>. Let’s write down the code for it.</p>
+<details>
+<summary>
+<b>Show the code</b>
+</summary>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Mean and Standard deviation of X</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>mu_x <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>sigma_x <span class="op">=</span> <span class="fl">2.0</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Mean and Standard deviation of Y</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>mu_y <span class="op">=</span> <span class="fl">2.0</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>sigma_y <span class="op">=</span> <span class="fl">4.0</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Mean and Standard deviation of Z</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>mu_z <span class="op">=</span> mu_x <span class="op">+</span> mu_y</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>sigma_z <span class="op">=</span> np.sqrt(sigma_x<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> sigma_y<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the distributions</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>dist_x <span class="op">=</span> norm(loc<span class="op">=</span>mu_x, scale<span class="op">=</span>sigma_x)</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>dist_y <span class="op">=</span> norm(loc<span class="op">=</span>mu_y, scale<span class="op">=</span>sigma_y)</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>dist_z <span class="op">=</span> norm(loc<span class="op">=</span>mu_z, scale<span class="op">=</span>sigma_z)</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate the PDFs</span></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>step_size <span class="op">=</span> <span class="fl">1e-4</span></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>points <span class="op">=</span> np.arange(<span class="op">-</span><span class="dv">30</span>, <span class="dv">30</span>, step_size)</span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>pdf_x <span class="op">=</span> dist_x.pdf(points)</span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>pdf_y <span class="op">=</span> dist_y.pdf(points)</span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>pdf_z <span class="op">=</span> dist_z.pdf(points)</span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">NOTE</span><span class="co">: We cannot convolve over continous functions using `numpy.convolve(...)`</span></span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Hence we will discretize our PDFs into PMFs using the step size we defined above</span></span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>pmf_x <span class="op">=</span> pdf_x <span class="op">*</span> step_size</span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a>pmf_y <span class="op">=</span> pdf_y <span class="op">*</span> step_size</span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Convolve the two PMFs</span></span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a>conv_pmf <span class="op">=</span> np.convolve(pmf_x, pmf_y, mode<span class="op">=</span><span class="st">"same"</span>)</span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a>conv_pdf <span class="op">=</span> conv_pmf <span class="op">/</span> step_size</span>
+<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Let's plot the distributions now and check if we have gotten</span></span>
+<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a><span class="co"># the same distribution as Z. </span></span>
+<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">NOTE</span><span class="co">: As we have approximated PMF from PDF, there would be</span></span>
+<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a><span class="co"># erros in the approximation. So, the final result may not</span></span>
+<span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a><span class="co"># look 100% identical.</span></span>
+<span id="cb10-42"><a href="#cb10-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-43"><a href="#cb10-43" aria-hidden="true" tabindex="-1"></a>_, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, sharex<span class="op">=</span><span class="va">False</span>, sharey<span class="op">=</span><span class="va">False</span>, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">5</span>))</span>
+<span id="cb10-44"><a href="#cb10-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-45"><a href="#cb10-45" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].plot(points, pdf_x)</span>
+<span id="cb10-46"><a href="#cb10-46" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].plot(points, pdf_y)</span>
+<span id="cb10-47"><a href="#cb10-47" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].plot(points, pdf_z)</span>
+<span id="cb10-48"><a href="#cb10-48" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].set_title(<span class="st">"Z = X + Y"</span>)</span>
+<span id="cb10-49"><a href="#cb10-49" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].legend([<span class="st">"PDF-X"</span>, <span class="st">"PDF-Y"</span>, <span class="st">"PDF-Z"</span>])</span>
+<span id="cb10-50"><a href="#cb10-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-51"><a href="#cb10-51" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].plot(points, pdf_x)</span>
+<span id="cb10-52"><a href="#cb10-52" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].plot(points, pdf_y)</span>
+<span id="cb10-53"><a href="#cb10-53" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].plot(points, conv_pdf)</span>
+<span id="cb10-54"><a href="#cb10-54" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].set_title(<span class="st">"Convolution of PDFs of X and Y"</span>)</span>
+<span id="cb10-55"><a href="#cb10-55" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].legend([<span class="st">"PDF-X"</span>, <span class="st">"PDF-Y"</span>, <span class="st">"Convolved"</span>])</span>
+<span id="cb10-56"><a href="#cb10-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-57"><a href="#cb10-57" aria-hidden="true" tabindex="-1"></a>plt.savefig(os.path.join(SAVE_PLOT_DIR, <span class="st">"convolution_of_pdfs.png"</span>))</span>
+<span id="cb10-58"><a href="#cb10-58" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<p><img src="plots/convolution_of_pdfs.png" class="img-fluid"></p>
+</section>
+<section id="the-forward-process" class="level1">
+<h1>9. The Forward Process</h1>
+<p>Though we will talk about <code>Diffusion Models</code> in detail in the future posts as well, I will implement the forward process here to give you an idea that things that might look complicated in symbols aren’t that complicated in terms of code. Let’s rewrite the forward process equation again:</p>
+<p><span class="math display">\[
+q(x_{1:T}\vert x_{0}) := \prod_{t=1}^{T}q(x_{t}\vert x_{t-1}) :=\prod_{t=1}^{T}\mathcal{N}(x_{t};\sqrt{1-\beta_{t}} x_{t-1},\ \beta_{t}\bf I)
+\]</span></p>
+<p>To implement the above equation:</p>
+<ol type="1">
+<li>We have to define the total number of timesteps <code>T</code></li>
+<li>We have to generate <span class="math inline">\(\beta_{t}\)</span> using a schedule. We can use any schedule including but not limited to linear, quadratic, etc. The only thing that we need to ensure is that <span class="math inline">\(\beta_{1} &lt; \beta_{2}...\)</span></li>
+<li>Sample a new image at timestep <code>t</code> from a conditional Gaussian for which the paramters are <span class="math inline">\(\mu_{t} = \sqrt{1-\beta_{t}} x_{t-1}\)</span> and <span class="math inline">\(\sigma_{t}^2 = \beta_{t}\)</span></li>
+<li>For the last point, we can use the property(eq. (13)) we studied in the conditional distribution section. Hence we can write this as:</li>
+</ol>
+<p><span class="math display">\[x_{t} \sim (\mathcal{N}(\sqrt{1-\beta_{t}} x_{t-1},\ \beta_{t}) + \mathcal{N}(0, 1))\]</span></p>
+<p><span class="math display">\[
+\Rightarrow x_{t} = \sqrt{1-\beta_{t}} x_{t-1} + \sqrt{\beta_{t}}\epsilon \ \ ; \ \text{where} \ \epsilon \sim \mathcal{N}(0, 1) \tag{15}
+\]</span></p>
+<p>Now that we have broken down the equation in much simpler parts, let’s code it!</p>
+<details>
+<summary>
+<b>Show the code</b>
+</summary>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> forward_process_ddpms(img_t_minus_1, beta, t):</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Implements the forward process of a DDPM model.</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co">    </span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co">    Args:</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co">        img_t_minus_1: Image at the previous timestep (t - 1)</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co">        beta: Scheduled Variance</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co">        t: Current timestep</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns:</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="co">        Image obtained at current timestep</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 1. Obtain beta_t. Reshape it to have the same number of</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># dimensions as our image array</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>    beta_t <span class="op">=</span> beta[t].reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>)</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 2. Calculate mean and variance</span></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>    mu <span class="op">=</span> np.sqrt((<span class="fl">1.0</span> <span class="op">-</span> beta_t)) <span class="op">*</span> img_t_minus_1</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>    sigma <span class="op">=</span> np.sqrt(beta_t)</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 3. Obtain image at timestep t using equation (15)</span></span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>    img_t <span class="op">=</span> mu <span class="op">+</span> sigma <span class="op">*</span> np.random.randn(<span class="op">*</span>img_t_minus_1.shape)</span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> img_t</span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Let's check if our forward process function is</span></span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a><span class="co"># doing what it is supposed to do on a sample image</span></span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Load image using PIL (or any other library that you prefer)</span></span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>img <span class="op">=</span> Image.<span class="bu">open</span>(<span class="st">"../images/cat.jpg"</span>)</span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Resize the image to desired dimensions</span></span>
+<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a>IMG_SIZE <span class="op">=</span> (<span class="dv">128</span>, <span class="dv">128</span>)</span>
+<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a>img <span class="op">=</span> img.resize(size<span class="op">=</span>IMG_SIZE)</span>
+<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Define number of timesteps</span></span>
+<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a>timesteps <span class="op">=</span> <span class="dv">100</span></span>
+<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Generate beta (variance schedule)</span></span>
+<span id="cb11-39"><a href="#cb11-39" aria-hidden="true" tabindex="-1"></a>beta_start <span class="op">=</span> <span class="fl">0.0001</span></span>
+<span id="cb11-40"><a href="#cb11-40" aria-hidden="true" tabindex="-1"></a>beta_end <span class="op">=</span> <span class="fl">0.05</span></span>
+<span id="cb11-41"><a href="#cb11-41" aria-hidden="true" tabindex="-1"></a>beta <span class="op">=</span> np.linspace(beta_start, beta_end, num<span class="op">=</span>timesteps, dtype<span class="op">=</span>np.float32)</span>
+<span id="cb11-42"><a href="#cb11-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-43"><a href="#cb11-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-44"><a href="#cb11-44" aria-hidden="true" tabindex="-1"></a>processed_images <span class="op">=</span> []</span>
+<span id="cb11-45"><a href="#cb11-45" aria-hidden="true" tabindex="-1"></a>img_t <span class="op">=</span> np.asarray(img.copy(), dtype<span class="op">=</span>np.float32) <span class="op">/</span> <span class="fl">255.</span></span>
+<span id="cb11-46"><a href="#cb11-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-47"><a href="#cb11-47" aria-hidden="true" tabindex="-1"></a><span class="co"># 5. Run the forward process to obtain img after t timesteps</span></span>
+<span id="cb11-48"><a href="#cb11-48" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> t <span class="kw">in</span> <span class="bu">range</span>(timesteps):</span>
+<span id="cb11-49"><a href="#cb11-49" aria-hidden="true" tabindex="-1"></a>    img_t <span class="op">=</span> forward_process_ddpms(img_t_minus_1<span class="op">=</span>img_t, beta<span class="op">=</span>beta, t<span class="op">=</span>t)</span>
+<span id="cb11-50"><a href="#cb11-50" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> t<span class="op">%</span><span class="dv">20</span><span class="op">==</span><span class="dv">0</span> <span class="kw">or</span> t<span class="op">==</span>timesteps <span class="op">-</span> <span class="dv">1</span>:</span>
+<span id="cb11-51"><a href="#cb11-51" aria-hidden="true" tabindex="-1"></a>        sample <span class="op">=</span> (img_t.clip(<span class="dv">0</span>, <span class="dv">1</span>) <span class="op">*</span> <span class="fl">255.0</span>).astype(np.uint8)</span>
+<span id="cb11-52"><a href="#cb11-52" aria-hidden="true" tabindex="-1"></a>        processed_images.append(sample)</span>
+<span id="cb11-53"><a href="#cb11-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-54"><a href="#cb11-54" aria-hidden="true" tabindex="-1"></a><span class="co"># 6. Plot and see samples at different timesteps</span></span>
+<span id="cb11-55"><a href="#cb11-55" aria-hidden="true" tabindex="-1"></a>_, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="bu">len</span>(processed_images), figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">6</span>))</span>
+<span id="cb11-56"><a href="#cb11-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-57"><a href="#cb11-57" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, sample <span class="kw">in</span> <span class="bu">enumerate</span>(processed_images):</span>
+<span id="cb11-58"><a href="#cb11-58" aria-hidden="true" tabindex="-1"></a>    ax[i].imshow(sample)</span>
+<span id="cb11-59"><a href="#cb11-59" aria-hidden="true" tabindex="-1"></a>    ax[i].set_title(<span class="ss">f"Timestep: </span><span class="sc">{</span>i<span class="op">*</span><span class="dv">20</span><span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb11-60"><a href="#cb11-60" aria-hidden="true" tabindex="-1"></a>    ax[i].axis(<span class="st">"off"</span>)</span>
+<span id="cb11-61"><a href="#cb11-61" aria-hidden="true" tabindex="-1"></a>    ax[i].grid(<span class="va">False</span>)</span>
+<span id="cb11-62"><a href="#cb11-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-63"><a href="#cb11-63" aria-hidden="true" tabindex="-1"></a>plt.suptitle(<span class="st">"Forward process in DDPMs"</span>, y<span class="op">=</span><span class="fl">0.75</span>)</span>
+<span id="cb11-64"><a href="#cb11-64" aria-hidden="true" tabindex="-1"></a>plt.savefig(os.path.join(SAVE_PLOT_DIR, <span class="st">"forward_process.png"</span>))</span>
+<span id="cb11-65"><a href="#cb11-65" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb11-66"><a href="#cb11-66" aria-hidden="true" tabindex="-1"></a>plt.close()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<p><img src="plots/forward_process.png" height="350" width="800"></p>
+<p>One thing to note here is that as you increase the number of timesteps <code>T</code>, <span class="math inline">\(\beta_{t} \to 1\)</span>. At that point:</p>
+<p><span class="math display">\[q(x_{T}) \approx \mathcal{N}(x_{T};\ 0, I)\]</span></p>
+<p>That’s it for now. We will talk about reverse process and other things related to DDPMs in the future notebooks. I hope this notebook was enough to give you a solid understanding of <strong>Gaussian distribution</strong> and their usage in context of DDPMs.</p>
+</section>
+<section id="references" class="level1">
+<h1>References</h1>
+<ul>
+<li>https://en.wikipedia.org/wiki/Normal_distribution</li>
+<li>https://en.wikipedia.org/wiki/Multivariate_normal_distribution#Likelihood_function</li>
+<li>https://en.wikipedia.org/wiki/Convolution_of_probability_distributions</li>
+<li>https://online.stat.psu.edu/stat505/lesson/6/6.1</li>
+<li>https://www.inf.ed.ac.uk/teaching/courses/pmr/slides/cts4up.pdf</li>
+<li>http://timstaley.co.uk/posts/convolving-pdfs-in-python/</li>
+<li>https://www.assemblyai.com/blog/diffusion-models-for-machine-learning-introduction/</li>
+<li>https://www.youtube.com/watch?v=fbLgFrlTnGU&amp;t=317s</li>
+<li>https://people.eecs.berkeley.edu/~jrs/189s17/lec/09.pdf</li>
+<li>https://mmuratarat.github.io/2019-10-05/univariate-multivariate_gaussian</li>
+<li>https://math.stackexchange.com/questions/4492913/isotropic-gaussian</li>
+<li>https://cs229.stanford.edu/section/gaussians.pdf</li>
+<li>https://math.stackexchange.com/questions/1991961/gaussian-distribution-is-isotropic</li>
+<li>https://www.cse.psu.edu/~rtc12/CSE586Spring2010/papers/prmlGaussian.pdf</li>
+<li>https://numpy.org/doc/stable/reference/random/generated/numpy.random.multivariate_normal.html</li>
+<li>https://docs.scipy.org/doc/scipy/tutorial/stats.html</li>
+<li>https://www.deeplearningbook.org/contents/prob.html</li>
+<li>https://arxiv.org/abs/2006.11239</li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+<script src="https://utteranc.es/client.js" repo="AakashKumarNain/blogComments" issue-term="pathname" theme="github-light" crossorigin="anonymous" async="">
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

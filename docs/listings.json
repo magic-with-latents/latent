@@ -1,0 +1,26 @@
+[
+  {
+    "listing": "/ddpms-series.html",
+    "items": [
+      "/posts/ddpms/part3/index.html",
+      "/posts/ddpms/part2/index.html",
+      "/posts/ddpms/part1/index.html"
+    ]
+  },
+  {
+    "listing": "/archive.html",
+    "items": [
+      "/posts/ddpms/part3/index.html",
+      "/posts/ddpms/part2/index.html",
+      "/posts/ddpms/part1/index.html"
+    ]
+  },
+  {
+    "listing": "/blog.html",
+    "items": [
+      "/posts/ddpms/part3/index.html",
+      "/posts/ddpms/part2/index.html",
+      "/posts/ddpms/part1/index.html"
+    ]
+  }
+]
