@@ -2,12 +2,17 @@
 
 $theme: "solar" !default;
 
-// About me
+figcaption {
+  color: blue;
+  text-align: center;
+  margin: 5px;
+}
 
-#about-me-text {
-    align-items: end;
-    display: grid;
-  }
+label{
+  text-align: left;
+  text-justify: inter-word;
+  
+}
 
 //
 // Color system
