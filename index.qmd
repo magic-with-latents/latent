@@ -1,38 +1,37 @@
 ---
 page-layout: full
 ---
-::: {.grid}
 
-::: {.g-col-12 .g-col-md-6 #about-me-text}
-![](profile.png)
-:::
-
-::: {.g-col-12 .g-col-md-6}
-# Hi, I'm Aakash Nain.
-I am a Data Scientist with 5+ years of experience in the industry. Currently, I am working as a **Senior Data Scientist** at [H2O.ai](https://h2o.ai/). I am one of the maintainers of the **[TensorFlow-addons](https://www.tensorflow.org/addons)** package. I am also a **Google Developers Expert** in Machine Learning, and the **first [JAX](https://jax.readthedocs.io/en/latest/notebooks/quickstart.html) GDE**. I am an active [Keras](https://keras.io) contributor, and I have contributed code examples like [OCR model for reading captchas](https://keras.io/examples/vision/captcha_ocr/), [Handwriting recognition](https://keras.io/examples/vision/handwriting_recognition/), [Image captioning](https://keras.io/examples/vision/image_captioning/), [WGAN-GP](https://keras.io/examples/generative/wgan_gp/), and [CycleGAN](https://keras.io/examples/generative/cyclegan/)
-
-In terms of work, my knowledge in the field of Data Science and Machine Learning spans in **T-shape**. Though I have worked in multiple domains, Computer Vision with Deep Learning is my favorite field to work with. I love simplifying Data Science and Machine Learning concepts, especially the maths behind them. I try to remain updated with the latest research as much as possible. I read a lot of papers, annotate them, and implement them. Check out the **Resources** section above for educational stuff. 
-
-*Python in breakfast, Machine Learning in lunch, and Deep Learning in dinner!*
+Welcome to **The Latent**! If you are here, it is a testament that you are seeking to learn something new in the field of Data Science, Machine Learning, or Deep Learning. The material presented here is our way of giving back to the ML community. Any ML-related concept requires three levels of understanding: conceptual theory, underlying maths, and code. We aim to cover all three in our blog posts.  If you have any feedback related to the content, please let us know!
 
 <iframe id="beehiiv-form" src="https://embeds.beehiiv.com/9232d2a2-6e85-4beb-b8ed-1de94e9e4f01?slim=true" data-test-id="beehiiv-embed" frameborder="0" scrolling="no" style="margin: 0; border-radius: 0px !important; background-color: transparent; height: 75px"></iframe>
 
+# About us
+
+::: {.grid}
+::: {.g-col-12  .g-col-sm-12 .g-col-md-4}
+ <figure>
+  <img src="nain.png" style="width:100%">
+  <figcaption><b>Aakash Nain</b></figcaption>
+  <label for="nain">Senior Data Scientist at [H2O.ai](https://h2o.ai/). One of the maintainers of the TensorFlow-addons package, Google Developers Expert in Machine Learning, and JAX. Actively contributes to Keras, TensorFlow, and JAX.</label>
+</figure> 
 :::
 
-::: {.g-col-12 .g-col-md-5 .g-start-md-2}
-# Data Visualization
-
-- Blog post 1
-- Blog post 2
-- Blog post 3
+::: {.g-col-12 .g-col-sm-12 .g-col-md-4}
+<figure>
+  <img src="sayak.jpg" style="width:100%">
+  <figcaption><b>Sayak Paul</b></figcaption>
+  <label for="rishabh">ML Engineer at Carted. Active contributor to Hugging Face Transformers, KerasCV and Keras. Off the work, he likes binge-watching stuff on Netflix.</label>
+</figure> 
 :::
 
-::: {.g-col-12 .g-col-md-5}
-# Stats/ML
-
-- This div...
-- ...required...
-- ...no offset (it's still in the first row)
-
+::: {.g-col-12 .g-col-sm-12 .g-col-md-4}
+<figure>
+  <img src="rishabh.png" style="width:100%">
+  <figcaption><b>Rishabh Anand</b></figcaption>
+  <label for="rishabh">Undergrad researcher from the National University of Singapore focusing on applied Graph Deep Learning, specifically graph attention and graph representation learning for the natural sciences. Also a writer and open-source contributor on Graph DL/AI.</label>
+</figure> 
 :::
 :::
+
+
