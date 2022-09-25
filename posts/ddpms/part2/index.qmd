@@ -119,7 +119,7 @@ fig.write_image(os.path.join(SAVE_PLOT_DIR, "univariate_normal_example.png"))
 fig.show()
 ```
 </details>
-<iframe width="800" height="400" src="plots/univariate_normal_example.html"></iframe>
+<iframe width="500" height="400" src="plots/univariate_normal_example.html"></iframe>
 
 Moving the mean value shifts the distribution from right to left while changing sigma affects the shape of the distribution. As the value of sigma increases, the curve gets more and more flat. Let's see that in action.
 
@@ -317,7 +317,7 @@ fig.write_html(os.path.join(SAVE_PLOT_DIR, "bivariate_normal_example.html"))
 fig.write_image(os.path.join(SAVE_PLOT_DIR, "bivariate_normal_example.png"))
 ```
 </details>
-<iframe width="800" height="800" src="plots/bivariate_normal_example.html"></iframe>
+<iframe width="700" height="700" src="plots/bivariate_normal_example.html"></iframe>
 
 That's an **interactive plot**. You can zoom in/out, and rotate the surface to see what the Gaussians look like. When you hover over the density, you will see black lines generating two univariate normals, one for `x1` and another for `x2`
 
@@ -455,7 +455,7 @@ plt.show()
 The `blue` and `red` lines in the above plot represent the mean values of `x1` and `x2` respectively. Let's visualize how the probability density surface changes with the covariance
 
 <details>
-<summary><b>Expand the code</b></summary>
+<summary><b>Show the code</b></summary>
 ```python
 fig = go.Figure(
     go.Surface(
@@ -936,7 +936,7 @@ plt.show()
 plt.close()
 ```
 </details>
-<img src="plots/forward_process.png" height=350 width=800></img>
+<img src="plots/forward_process.png" height=200 width=800></img>
 
 One thing to note here is that as you increase the number of timesteps `T`, $\beta_{t} \to 1$. At that point:
 
