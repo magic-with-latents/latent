@@ -148,7 +148,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <a class="nav-link" href="../../../blog.html">Blog</a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/"><i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/magic-with-latents"><i class="bi bi-github" role="img">
 </i> 
  </a>
   </li>  
@@ -161,8 +161,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-resources" role="button" data-bs-toggle="dropdown" aria-expanded="false">Resources</a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-resources">    
         <li>
-    <a class="dropdown-item" href="https://www.kaggle.com/">
- <span class="dropdown-text">Kaggle Notebooks</span></a>
+    <a class="dropdown-item" href="https://github.com/AakashKumarNain/annotated_research_papers">
+ <span class="dropdown-text">Annotated Research Papers</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://github.com/AakashKumarNain/TF_JAX_tutorials">
+ <span class="dropdown-text">TF-JAX Tutorials</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://github.com/sayakpaul/vision-transformers-tf">
+ <span class="dropdown-text">Vision Transformers in TF</span></a>
   </li>  
     </ul>
   </li>
@@ -332,7 +340,7 @@ p(x; \mu, \sigma^{2}) = \frac{1}{\sigma \sqrt{2 \pi}} exp({\frac{-1}{2}(\frac {x
 <span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>fig.write_image(os.path.join(SAVE_PLOT_DIR, <span class="st">"univariate_normal_example.png"</span>))</span>
 <span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>fig.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<iframe width="800" height="400" src="plots/univariate_normal_example.html">
+<iframe width="500" height="400" src="plots/univariate_normal_example.html">
 </iframe>
 <p>Moving the mean value shifts the distribution from right to left while changing sigma affects the shape of the distribution. As the value of sigma increases, the curve gets more and more flat. Let’s see that in action.</p>
 <details>
@@ -521,7 +529,7 @@ p(x; \mu, \Sigma) = \frac{1}{(2\pi)^{d/2} \ \vert{\Sigma}\vert^{1/2}} \ exp \ (\
 <span id="cb4-119"><a href="#cb4-119" aria-hidden="true" tabindex="-1"></a>fig.write_html(os.path.join(SAVE_PLOT_DIR, <span class="st">"bivariate_normal_example.html"</span>))</span>
 <span id="cb4-120"><a href="#cb4-120" aria-hidden="true" tabindex="-1"></a>fig.write_image(os.path.join(SAVE_PLOT_DIR, <span class="st">"bivariate_normal_example.png"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<iframe width="800" height="800" src="plots/bivariate_normal_example.html">
+<iframe width="700" height="700" src="plots/bivariate_normal_example.html">
 </iframe>
 <p>That’s an <strong>interactive plot</strong>. You can zoom in/out, and rotate the surface to see what the Gaussians look like. When you hover over the density, you will see black lines generating two univariate normals, one for <code>x1</code> and another for <code>x2</code></p>
 </section>
@@ -646,7 +654,7 @@ Cov(x_{i}x_{j}) = Var(x_{i}) \ \ \ \{ i=j\}
 <p>The <code>blue</code> and <code>red</code> lines in the above plot represent the mean values of <code>x1</code> and <code>x2</code> respectively. Let’s visualize how the probability density surface changes with the covariance</p>
 <details>
 <summary>
-<b>Expand the code</b>
+<b>Show the code</b>
 </summary>
 <div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> go.Figure(</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    go.Surface(</span>
@@ -1078,7 +1086,7 @@ q(x_{1:T}\vert x_{0}) := \prod_{t=1}^{T}q(x_{t}\vert x_{t-1}) :=\prod_{t=1}^{T}\
 <span id="cb11-65"><a href="#cb11-65" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
 <span id="cb11-66"><a href="#cb11-66" aria-hidden="true" tabindex="-1"></a>plt.close()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<p><img src="plots/forward_process.png" height="350" width="800"></p>
+<p><img src="plots/forward_process.png" height="200" width="800"></p>
 <p>One thing to note here is that as you increase the number of timesteps <code>T</code>, <span class="math inline">\(\beta_{t} \to 1\)</span>. At that point:</p>
 <p><span class="math display">\[q(x_{T}) \approx \mathcal{N}(x_{T};\ 0, I)\]</span></p>
 <p>That’s it for now. We will talk about reverse process and other things related to DDPMs in the future notebooks. I hope this notebook was enough to give you a solid understanding of <strong>Gaussian distribution</strong> and their usage in context of DDPMs.</p>
