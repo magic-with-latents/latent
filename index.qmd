@@ -11,7 +11,7 @@ Welcome to **The Latent**! If you are here, it is a testament that you are seeki
 ::: {.grid}
 ::: {.g-col-12  .g-col-sm-12 .g-col-md-4}
  <figure>
-  <img src="nain.png" style="width:100%">
+  <img src="./images/nain.png" style="width:100%">
   <figcaption><b>Aakash Nain</b></figcaption>
   <label for="nain">Senior Data Scientist at [H2O.ai](https://h2o.ai/). One of the maintainers of the TensorFlow-addons package, Google Developers Expert in Machine Learning, and JAX. Actively contributes to Keras, TensorFlow, and JAX.</label>
 </figure> 
@@ -19,7 +19,7 @@ Welcome to **The Latent**! If you are here, it is a testament that you are seeki
 
 ::: {.g-col-12 .g-col-sm-12 .g-col-md-4}
 <figure>
-  <img src="sayak.jpg" style="width:100%">
+  <img src="./images/sayak.jpg" style="width:100%">
   <figcaption><b>Sayak Paul</b></figcaption>
   <label for="rishabh">ML Engineer at Carted. Active contributor to Hugging Face Transformers, KerasCV and Keras. Off the work, he likes binge-watching stuff on Netflix.</label>
 </figure> 
@@ -27,7 +27,7 @@ Welcome to **The Latent**! If you are here, it is a testament that you are seeki
 
 ::: {.g-col-12 .g-col-sm-12 .g-col-md-4}
 <figure>
-  <img src="rishabh.png" style="width:100%">
+  <img src="./images/rishabh.png" style="width:100%">
   <figcaption><b>Rishabh Anand</b></figcaption>
   <label for="rishabh">Undergrad researcher from the National University of Singapore focusing on applied Graph Deep Learning, specifically graph attention and graph representation learning for the natural sciences. Also a writer and open-source contributor on Graph DL/AI.</label>
 </figure> 
