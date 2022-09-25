@@ -11,13 +11,17 @@ website:
       - text: Blog
         href: blog.qmd 
       - icon: github
-        href: https://github.com/
+        href: https://github.com/magic-with-latents
       - icon: twitter
         href: https://twitter.com/
       - text: Resources
-        menu: 
-          - text: Kaggle Notebooks
-            href: https://www.kaggle.com/
+        menu:
+          - text: Annotated Research Papers
+            href: https://github.com/AakashKumarNain/annotated_research_papers
+          - text: TF-JAX Tutorials
+            href: https://github.com/AakashKumarNain/TF_JAX_tutorials
+          - text: Vision Transformers in TF
+            href: https://github.com/sayakpaul/vision-transformers-tf
       - text: Archive
         href: archive.qmd
 format:
