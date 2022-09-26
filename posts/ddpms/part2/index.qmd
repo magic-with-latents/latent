@@ -948,21 +948,21 @@ That's it for now. We will talk about reverse process and other things related t
 
 # References
 
-* https://en.wikipedia.org/wiki/Normal_distribution
-* https://en.wikipedia.org/wiki/Multivariate_normal_distribution#Likelihood_function
-* https://en.wikipedia.org/wiki/Convolution_of_probability_distributions
-* https://online.stat.psu.edu/stat505/lesson/6/6.1
-* https://www.inf.ed.ac.uk/teaching/courses/pmr/slides/cts4up.pdf
-* http://timstaley.co.uk/posts/convolving-pdfs-in-python/
-* https://www.assemblyai.com/blog/diffusion-models-for-machine-learning-introduction/
-* https://www.youtube.com/watch?v=fbLgFrlTnGU&t=317s
-* https://people.eecs.berkeley.edu/~jrs/189s17/lec/09.pdf
-* https://mmuratarat.github.io/2019-10-05/univariate-multivariate_gaussian
-* https://math.stackexchange.com/questions/4492913/isotropic-gaussian
-* https://cs229.stanford.edu/section/gaussians.pdf
-* https://math.stackexchange.com/questions/1991961/gaussian-distribution-is-isotropic
-* https://www.cse.psu.edu/~rtc12/CSE586Spring2010/papers/prmlGaussian.pdf
-* https://numpy.org/doc/stable/reference/random/generated/numpy.random.multivariate_normal.html
-* https://docs.scipy.org/doc/scipy/tutorial/stats.html
-* https://www.deeplearningbook.org/contents/prob.html
-* https://arxiv.org/abs/2006.11239
+1. [Wiki: Normal Distribution](https://en.wikipedia.org/wiki/Normal_distribution)
+2. [Wiki: Multivariate Normal](https://en.wikipedia.org/wiki/Multivariate_normal_distribution#Likelihood_function)
+3. [Applied Multivariate Statistical Analysis](https://online.stat.psu.edu/stat505/lesson/6/6.1)
+4. [The Gaussian Distribution](https://www.inf.ed.ac.uk/teaching/courses/pmr/slides/cts4up.pdf)
+5. [Numpy docs on multivariate normal](https://numpy.org/doc/stable/reference/random/generated/numpy.random.multivariate_normal.html)
+6. [Scipy statistics tutorial](https://docs.scipy.org/doc/scipy/tutorial/stats.html)
+7. [Probability and Information Theory](https://www.deeplearningbook.org/contents/prob.html)
+8. [Gaussian Distribution and their properties](https://mmuratarat.github.io/2019-10-05/univariate-multivariate_gaussian)
+9. [The Anisotropic Multivariate Normal Distribution](https://people.eecs.berkeley.edu/~jrs/189s17/lec/09.pdf)
+10. [Primer on Gaussian](https://www.cse.psu.edu/~rtc12/CSE586Spring2010/papers/prmlGaussian.pdf)
+11. [Gaussians](https://cs229.stanford.edu/section/gaussians.pdf)
+12. [Isotropic Gaussian](https://math.stackexchange.com/questions/4492913/isotropic-gaussian)
+13. [Isotropic Gaussian](https://math.stackexchange.com/questions/1991961/gaussian-distribution-is-isotropic)
+14. [Wiki: Convolution of PDFs](https://en.wikipedia.org/wiki/Convolution_of_probability_distributions)
+15. [Convolvinf pdfs in Python](http://timstaley.co.uk/posts/convolving-pdfs-in-python/)
+16. [Assembly AI: Intro to Diffusion Models](https://www.assemblyai.com/blog/diffusion-models-for-machine-learning-introduction/)
+17. [Ari Seff's tutorial](https://www.youtube.com/watch?v=fbLgFrlTnGU&t=317s)
+18. [Denoising Diffusion Probabilistic Models](https://arxiv.org/abs/2006.11239)
