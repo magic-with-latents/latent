@@ -650,10 +650,11 @@ That's it for now. I hope this notebook was enough to give you a solid understan
 
 # References
 
-1. https://blog.evjang.com/2016/08/variational-bayes.html
-2. https://lilianweng.github.io/posts/2018-08-12-vae/
-3. https://lilianweng.github.io/posts/2021-07-11-diffusion-models/
-4. https://www.youtube.com/watch?v=fbLgFrlTnGU
-5. https://arxiv.org/pdf/2208.11970.pdf
-6. https://www.assemblyai.com/blog/diffusion-models-for-machine-learning-introduction/
-7. https://mr-easy.github.io/2020-04-16-kl-divergence-between-2-gaussian-distributions/
+1. [A Beginner's Guide to Variational Methods](https://blog.evjang.com/2016/08/variational-bayes.html)
+2. [From Autoencoder to Beta-VAE](https://lilianweng.github.io/posts/2018-08-12-vae/)
+3. [What are Diffusion Models?](https://lilianweng.github.io/posts/2021-07-11-diffusion-models/)
+4. [Ari Seff's tutorial](https://www.youtube.com/watch?v=fbLgFrlTnGU)
+5. [Denoising Diffusion Probabilistic Models](https://arxiv.org/abs/2006.11239)
+6. [Understanding Diffusion Models](https://arxiv.org/pdf/2208.11970.pdf)
+7. [Assembly AI: Intro to Diffusion Models](https://www.assemblyai.com/blog/diffusion-models-for-machine-learning-introduction/)
+8. [KL Divergence between 2 Gaussian Distributions](https://mr-easy.github.io/2020-04-16-kl-divergence-between-2-gaussian-distributions/)
