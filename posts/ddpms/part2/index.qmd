@@ -15,7 +15,7 @@ execute:
 ---
 
 <details>
-<summary>Expand</summary>
+<summary><b>Show the code</b></summary>
 ```python
 import os
 import scipy

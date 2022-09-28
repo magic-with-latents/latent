@@ -15,7 +15,7 @@ execute:
 ---
 
 <details>
-<summary>Expand</summary>
+<summary><b>Show the code</b></summary>
 ```python
 import os
 import scipy
@@ -42,7 +42,7 @@ $$
 As a refresher, $q(x_{0:T})$ is known as the **forward distribution** and $q(x_{t}\vert x_{t-1}$ is referred as **forward diffusion kernel**
 
 <details>
-<summary>Expand</summary>
+<summary><b>Show the code</b></summary>
 ```python
 def forward_process_ddpms(img_t_minus_1, beta, t):
     """Implements the forward process of a DDPM model.
@@ -194,7 +194,7 @@ Ha! The above equation is nice.Given the original image, we can now sample at an
 Let's code it and compare the results with the previous results 
 
 <details>
-<summary>Expand</summary>
+<summary><b>Show the code</b></summary>
 ```python
 def forward_process_ddpms_v2(orig_img, alpha_bar, t):
     """Implements the efficient forward process of a DDPM model.
