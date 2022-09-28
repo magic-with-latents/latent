@@ -558,15 +558,15 @@ L &amp;= \mathbb{E}_{q}\biggl[\text{log}\ p(x_{T}) \ + \ \text{log}\frac{p_{\the
 <p><span class="math display">\[
 \begin{align*}
 L &amp;= \mathbb{E}_{q(x_{1}|x_{0})}\big[\text{log }{p_{\theta}(x_{0}|x_{1})}\big] \ + \ \mathbb{E}_{q(x_{T}|x_{0})}\big[\text{log }\frac{p(x_{T})}{q(x_{T}|x_{0})}\big] \ + \  \sum\limits_{t=2}^{T}\mathbb{E}_{q(x_{t},\ x_{t-1}|x_{0})}\bigg[\text{log}\frac{p_{\theta}(x_{t-1}|x_{t})}{q(x_{t-1}|x_{t}, x_{0})}\biggr] \\
-\Rightarrow L &amp;= \mathbb{E}_{q(x_{1}|x_{0})}\big[\text{log }{p_{\theta}(x_{0}|x_{1})}\big] \ - \ D_{KL}\bigg(q(x_{T}|x_{0}) \parallel \ p(x_{T}) \bigg) \ - \ \sum\limits_{t=2}^{T}\mathbb{E}_{q(x_{t}|x_{0})}\big[D_{KL}\big(q(x_{t-1}|x_{t}, x_{0}) \ \parallel \ p_{\theta}(x_{t-1}|x_{t}) \big] \tag{10} \\
+\Rightarrow L &amp;= \mathbb{E}_{q(x_{1}|x_{0})}\big[\text{log }{p_{\theta}(x_{0}|x_{1})}\big] \ - \ D_{KL}\bigg(q(x_{T}|x_{0}) \parallel \ p(x_{T}) \bigg) \ - \ \sum\limits_{t=2}^{T}\mathbb{E}_{q(x_{t}|x_{0})}\big[D_{KL}\big(q(x_{t-1}|x_{t}, x_{0}) \ \parallel \ p_{\theta}(x_{t-1}|x_{t})\big)\big] \tag{10} \\
 \end{align*}
 \]</span><br></p>
 <p>A few points to note about this equation:</p>
 <ol type="1">
-<li>Take a look at the second term <span class="math inline">\(D_{KL}\big(q(x_{T}|x_{0}) \parallel \ p(x_{T}\big)\)</span>. The forward process represented by <code>q</code> is fixed. The term <span class="math inline">\(p(x_{T})\)</span> is nothing but the end point of the forward process and the start of the reverse process, hence it is fixed as well. This means that we can safely ignore the second term in the optimization process.</li>
-<li>The KL-divergence involved in the third term <span class="math inline">\(D_{KL}\big(q(x_{t-1}|x_{t}, x_{0}) \ \parallel \ p_{\theta}(x_{t-1}|x_{t})\)</span> is known as <em>denoising matching term</em>. We proved earlier that if <span class="math inline">\(x_{0}\)</span> is known, we can show that the intermediate step in the forward process <code>q</code> are Gaussian (we will show it later). The reverse steps in <code>p</code> are also parameterized as Gaussian (check eq. (3)), hence we can say that the KL divergence term at each timestep is a comparison between two Gaussians. The term <span class="math inline">\((q(x_{t-1}|x_{t}, x_{0})\)</span> also serves as the GT since it defines how to denoise a noisy image <span class="math inline">\({x_{t}}\)</span> with access to what the final, completely denoised image <span class="math inline">\(x_{0}\)</span> should be.</li>
+<li>Take a look at the second term <span class="math inline">\(D_{KL}\big(q(x_{T}|x_{0}) \parallel \ p(x_{T})\big)\)</span>. The forward process represented by <code>q</code> is fixed. The term <span class="math inline">\(p(x_{T})\)</span> is nothing but the end point of the forward process and the start of the reverse process, hence it is fixed as well. This means that we can safely ignore the second term in the optimization process.</li>
+<li>The KL-divergence involved in the third term <span class="math inline">\(D_{KL}\big(q(x_{t-1}|x_{t}, x_{0}) \ \parallel \ p_{\theta}(x_{t-1}|x_{t})\big)\)</span> is known as <em>denoising matching term</em>. We proved earlier that if <span class="math inline">\(x_{0}\)</span> is known, we can show that the intermediate step in the forward process <code>q</code> are Gaussian (we will show it later). The reverse steps in <code>p</code> are also parameterized as Gaussian (check eq. (3)), hence we can say that the KL divergence term at each timestep is a comparison between two Gaussians. The term <span class="math inline">\((q(x_{t-1}|x_{t}, x_{0})\)</span> also serves as the GT since it defines how to denoise a noisy image <span class="math inline">\({x_{t}}\)</span> with access to what the final, completely denoised image <span class="math inline">\(x_{0}\)</span> should be.</li>
 <li>As a result of above two, we can rewrite our training objective as: <span class="math display">\[
-L = \mathbb{E}_{q(x_{1}|x_{0})}\big[\text{log }{p_{\theta}(x_{0}|x_{1})}\big] \ - \ \sum\limits_{t=2}^{T}\mathbb{E}_{q(x_{t}|x_{0})}\big[D_{KL}\big(q(x_{t-1}|x_{t}, x_{0}) \ \parallel \ p_{\theta}(x_{t-1}|x_{t}) \big] - C \tag{11} \\
+L = \mathbb{E}_{q(x_{1}|x_{0})}\big[\text{log }{p_{\theta}(x_{0}|x_{1})}\big] \ - \ \sum\limits_{t=2}^{T}\mathbb{E}_{q(x_{t}|x_{0})}\big[D_{KL}\big(q(x_{t-1}|x_{t}, x_{0}) \ \parallel \ p_{\theta}(x_{t-1}|x_{t})\big)\big] - C \tag{11} \\
 \]</span></li>
 </ol>
 <p><br></p>
@@ -681,7 +681,7 @@ p_{\theta}(x_{t-1}|x_{t}) := \mathcal{N}(x_{t-1}; \mu_{\theta}(x_{t}, t), \Sigma
 </ol>
 <p><br></p>
 <p>Let’s revisit our objectve function now. Writing down the equation here:<br> <span class="math display">\[
-L = \mathbb{E}_{q(x_{1}|x_{0})}\big[\text{log }{p_{\theta}(x_{0}|x_{1})}\big] \ - \ \sum\limits_{t=2}^{T}\mathbb{E}_{q(x_{t}|x_{0})}\big[D_{KL}\big(q(x_{t-1}|x_{t}, x_{0}) \ \parallel \ p_{\theta}(x_{t-1}|x_{t}) \big] \ - C \\
+L = \mathbb{E}_{q(x_{1}|x_{0})}\big[\text{log }{p_{\theta}(x_{0}|x_{1})}\big] \ - \ \sum\limits_{t=2}^{T}\mathbb{E}_{q(x_{t}|x_{0})}\big[D_{KL}\big(q(x_{t-1}|x_{t}, x_{0}) \ \parallel \ p_{\theta}(x_{t-1}|x_{t})\big)\big] \ - C \\
 \]</span></p>
 <p>We know that the KL divergence between two Gaussian distributions can be evaluated in closed form (Check out this excellent <a href="https://mr-easy.github.io/2020-04-16-kl-divergence-between-2-gaussian-distributions/">post</a> for more details). Also, the variance is fixed, and we only need to minimize the difference between the actual mean and the predicted mean.</p>
 <p><span class="math display">\[
