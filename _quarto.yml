@@ -8,12 +8,12 @@ website:
   description: "Welcome to The Latent, a place to learn Data Science, Machine Learning, and Deep Learning"
   navbar:
     right:
-      - text: Blog
-        href: blog.qmd 
       - icon: github
         href: https://github.com/magic-with-latents
-      - icon: twitter
-        href: https://twitter.com/
+      - text: Blog
+        href: blog.qmd 
+      - text: Archive
+        href: archive.qmd
       - text: Resources
         menu:
           - text: Annotated Research Papers
@@ -22,8 +22,8 @@ website:
             href: https://github.com/AakashKumarNain/TF_JAX_tutorials
           - text: Vision Transformers in TF
             href: https://github.com/sayakpaul/vision-transformers-tf
-      - text: Archive
-        href: archive.qmd
+          - text: Graph Neural Networks
+            href: https://rish-16.github.io/posts/gnn-math/
 format:
   html:
     theme: theme.scss
