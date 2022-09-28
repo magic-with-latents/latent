@@ -27,6 +27,7 @@ website:
 format:
   html:
     theme: theme.scss
+    highlight-style: oblivion
 
 
 
