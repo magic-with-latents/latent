@@ -2,9 +2,16 @@
 page-layout: full
 ---
 
-Welcome to **The Latent**! If you are here, it is a testament that you are seeking to learn something new in the field of Data Science, Machine Learning, or Deep Learning. The material presented here is our way of giving back to the ML community. Any ML-related concept requires three levels of understanding: conceptual theory, underlying maths, and code. We aim to cover all three in our blog posts.  If you have any feedback related to the content, please let us know!
+Welcome to **The Latent**! 
 
-<iframe id="beehiiv-form" src="https://embeds.beehiiv.com/9232d2a2-6e85-4beb-b8ed-1de94e9e4f01?slim=true" data-test-id="beehiiv-embed" frameborder="0" scrolling="no" style="margin: 0; border-radius: 0px !important; background-color: transparent; height: 75px"></iframe>
+If you are here, it is a testament that you are seeking to learn something new in the field of Data Science, Machine Learning, or Deep Learning. The field of Machine Learning moves fast. Almost a hundred papers are published daily on arXiv. The number of resources to learn from about these new developments is still low. For example, Diffusion Models saw exponential growth in terms of research papers and related experiments. We try to bridge that gap by putting the learning resources about new research in short blog posts. These blog posts consist of three things:
+
+1. Conceptual theory
+2. Underlying math
+3. Corresponding code
+
+We are starting with the DDPMs series, but we may publish posts on new topics shortly. Check out the **Blog** and **Archive** sections on the top for details. The **Resources** section contains a few complementary resources. Feedback is always welcome!
+
 
 # About us
 
