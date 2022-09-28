@@ -27,9 +27,9 @@ Welcome to **The Latent**! If you are here, it is a testament that you are seeki
 
 ::: {.g-col-12 .g-col-sm-12 .g-col-md-4}
 <figure>
-  <img src="./images/rishabh.png" style="width:100%">
+  <img src="./images/rishabh.jpeg" style="width:100%">
   <figcaption><b>Rishabh Anand</b></figcaption>
-  <label for="rishabh">Undergrad researcher from the National University of Singapore focusing on applied Graph Deep Learning, specifically graph attention and graph representation learning for the natural sciences. Also a writer and open-source contributor on Graph DL/AI.</label>
+  <label for="rishabh">Undergrad researcher from the National University of Singapore focusing on Graph Representation Learning for the natural sciences. Avid writer and active open-source contributor on AI/ML.</label>
 </figure> 
 :::
 :::
