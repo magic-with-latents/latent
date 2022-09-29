@@ -14,6 +14,5 @@ title-block-banner: false
 
 # Blogposts
 
-##### [DDPMs](ddpms-series.html)
-Learn about the fundamentals of Diffusion models. Not only you get to learn the
-underlying maths but also the corresponding code.
+##### [Denoising Diffusion Probabilistic Models (DDPMs)](ddpms-series.html)
+Learn about the fundamentals of diffusion models.
