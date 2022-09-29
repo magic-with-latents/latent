@@ -3,7 +3,7 @@ project:
   output-dir: docs
 
 website:
-  title: "The Latent: Code the maths"
+  title: "The Latent: Code the Maths"
   site-url: ""
   description: "Welcome to The Latent, a place to learn Data Science, Machine Learning, and Deep Learning"
   navbar:
