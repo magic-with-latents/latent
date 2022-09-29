@@ -37,14 +37,14 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "The Latent: Code the maths",
+    "title": "The Latent: Code the Maths",
     "section": "",
     "text": "If you are here, it is a testament that you are seeking to learn something new in the field of Data Science, Machine Learning, or Deep Learning. The field of Machine Learning moves fast. Almost a hundred papers are published daily on arXiv. The number of resources to learn from about these new developments is still low. For example, Diffusion Models saw exponential growth in terms of research papers and related experiments. We try to bridge that gap by putting the learning resources about new research in short blog posts. These blog posts consist of three things:\n\nConceptual theory\nUnderlying math\nCorresponding code\n\nWe are starting with the DDPMs series, but we may publish posts on new topics shortly. Check out the Blog and Archive sections on the top for details. The Resources section contains a few complementary resources. Feedback is always welcome!\n\nAbout us\n\n\n\n\n\nAakash Nain\n\nSenior Data Scientist at H2O.ai. One of the maintainers of the TensorFlow-addons package, Google Developers Expert in Machine Learning, and JAX. Actively contributes to Keras, TensorFlow, and JAX.\n\n\n\n\n\n\nSayak Paul\n\nML Engineer at Carted. Active contributor to Hugging Face Transformers, KerasCV and Keras. Off the work, he likes binge-watching stuff on Netflix.\n\n\n\n\n\n\nRishabh Anand\n\nUndergrad researcher from the National University of Singapore focusing on Graph Representation Learning for the natural sciences. Avid writer and active open-source contributor on AI/ML."
   },
   {
     "objectID": "blog.html",
     "href": "blog.html",
-    "title": "The Latent: Code the maths",
+    "title": "The Latent: Code the Maths",
     "section": "",
     "text": "A deeper dive into DDPMs\n\n\nDDPMs - Part 3\n\n\n\n\ndiffusion models\n\n\ngenerative modelling\n\n\ndeep learning\n\n\n \n\n\n\n\nSep 2, 2022\n\n\n18 min\n\n\n\n\n\n\n\n\nAll you need know about Gaussian distribution\n\n\nDDPMs - Part 2\n\n\n\n\ndiffusion models\n\n\ngenerative modelling\n\n\ndeep learning\n\n\n \n\n\n\n\nAug 3, 2022\n\n\n28 min\n\n\n\n\n\n\n\n\nFresher on Random Variables\n\n\nDDPMs - Part 1 (Optional)\n\n\n\n\nlinear algebra\n\n\ndiffusion models\n\n\n \n\n\n\n\nAug 1, 2022\n\n\n6 min\n\n\n\n\n\n\nNo matching items"
   }
