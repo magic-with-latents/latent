@@ -12,6 +12,13 @@ format:
     highlight-style: oblivion
 execute: 
   echo: false
+citation:
+  type: "post-weblog"
+  title: "all you need know about gaussian distribution"
+  container-title: "The Latent"
+  author: "Aakash Nain"
+  issued: "2022-08-03"
+  url: https://magic-with-latents.github.io/latent/posts/ddpms-series/part2/
 ---
 
 <details>

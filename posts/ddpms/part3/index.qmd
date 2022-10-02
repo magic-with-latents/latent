@@ -1,5 +1,5 @@
 ---
-title: "A deeper dive into DDPMs"
+title: "A deep dive into DDPMs"
 subtitle: "DDPMs - Part 3"
 author: "Aakash Kumar Nain ([@A_K_Nain](https:twitter.com/A_K_Nain))"
 date: "2022-09-02"
@@ -12,6 +12,13 @@ format:
     highlight-style: oblivion
 execute: 
   echo: false
+citation:
+  type: "post-weblog"
+  title: "a deep dive into ddpms"
+  container-title: "The Latent"
+  author: "Aakash Nain"
+  issued: "2022-09-02"
+  url: https://magic-with-latents.github.io/latent/posts/ddpms-series/part3/
 ---
 
 <details>
