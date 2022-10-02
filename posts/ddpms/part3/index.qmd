@@ -18,7 +18,7 @@ citation:
   container-title: "The Latent"
   author: "Aakash Nain"
   issued: "2022-09-02"
-  url: https://magic-with-latents.github.io/latent/posts/ddpms-series/part3/
+  url: https://magic-with-latents.github.io/latent/posts/ddpms/part3/
 ---
 
 <details>
