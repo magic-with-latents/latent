@@ -12,7 +12,7 @@ page-layout: full
 title-block-banner: false
 ---
 
-# Blogposts
+# Blog posts
 
 ##### [Denoising Diffusion Probabilistic Models (DDPMs)](ddpms-series.html)
 Learn about the fundamentals of diffusion models.
