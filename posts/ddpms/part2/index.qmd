@@ -1,5 +1,5 @@
 ---
-title: "All you need know about Gaussian distribution"
+title: "All you need to know about Gaussian distribution"
 subtitle: "DDPMs - Part 2"
 author: "Aakash Kumar Nain ([@A_K_Nain](https:twitter.com/A_K_Nain))"
 date: "2022-08-03"
@@ -14,7 +14,7 @@ execute:
   echo: false
 citation:
   type: "post-weblog"
-  title: "all you need know about gaussian distribution"
+  title: "all you need to know about gaussian distribution"
   container-title: "The Latent"
   author: "Aakash Nain"
   issued: "2022-08-03"
