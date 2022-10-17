@@ -20,7 +20,7 @@ We are starting with the DDPMs series, but we may publish posts on new topics sh
  <figure>
   <img src="./images/nain.png" style="width:100%">
   <figcaption><b>Aakash Nain</b></figcaption>
-  <label for="nain">Senior Data Scientist at [H2O.ai](https://h2o.ai/). One of the maintainers of the TensorFlow-addons package, Google Developers Expert in Machine Learning, and JAX. Actively contributes to Keras, TensorFlow, and JAX.</label>
+  <label for="nain">Senior Data Scientist at [H2O](https://h2o.ai/). One of the maintainers of the TensorFlow-addons package, Google Developers Expert in Machine Learning, and JAX. Actively contributes to Keras, TensorFlow, and JAX.</label>
 </figure> 
 :::
 
