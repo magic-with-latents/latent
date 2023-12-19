@@ -20,7 +20,7 @@ We are starting with the DDPMs series, but we may publish posts on new topics sh
  <figure>
   <img src="./images/nain.png" style="width:100%">
   <figcaption><b>Aakash Nain</b></figcaption>
-  <label for="nain">Senior Data Scientist at [H2O](https://h2o.ai/). One of the maintainers of the TensorFlow-addons package, Google Developers Expert in Machine Learning, and JAX. Actively contributes to Keras, TensorFlow, and JAX.</label>
+  <label for="nain">Senior ML Engineer at Merlyn Mind. Keras 3 core collaborator, maintainer for TensorFlow-addons package, Google Developers Expert in Machine Learning, and JAX. Actively contributes to Keras, TensorFlow, and JAX.</label>
 </figure> 
 :::
 
@@ -28,7 +28,7 @@ We are starting with the DDPMs series, but we may publish posts on new topics sh
 <figure>
   <img src="./images/sayak.jpg" style="width:100%">
   <figcaption><b>Sayak Paul</b></figcaption>
-  <label for="rishabh">ML Engineer at Carted. Active contributor to Hugging Face Transformers, KerasCV and Keras. Off the work, he likes binge-watching stuff on Netflix.</label>
+  <label for="rishabh">ML Engineer at Hugging Face. Active contributor to Hugging Face Transformers, KerasCV and Keras. Off the work, he likes binge-watching stuff on Netflix.</label>
 </figure> 
 :::
 
