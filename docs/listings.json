@@ -1,6 +1,6 @@
 [
   {
-    "listing": "/ddpms-series.html",
+    "listing": "/blog.html",
     "items": [
       "/posts/ddpms/part3/index.html",
       "/posts/ddpms/part2/index.html",
@@ -16,7 +16,7 @@
     ]
   },
   {
-    "listing": "/blog.html",
+    "listing": "/ddpms-series.html",
     "items": [
       "/posts/ddpms/part3/index.html",
       "/posts/ddpms/part2/index.html",

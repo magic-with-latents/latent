@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>/posts/ddpms/part3/index.html</loc>
-    <lastmod>2022-10-17T02:09:21.722Z</lastmod>
-  </url>
-  <url>
-    <loc>/posts/ddpms/part2/index.html</loc>
-    <lastmod>2022-10-17T02:09:22.594Z</lastmod>
-  </url>
-  <url>
-    <loc>/posts/ddpms/part1/index.html</loc>
-    <lastmod>2022-10-17T02:09:23.151Z</lastmod>
-  </url>
-  <url>
-    <loc>/ddpms-series.html</loc>
-    <lastmod>2022-10-17T02:09:23.579Z</lastmod>
+    <loc>/blog.html</loc>
+    <lastmod>2023-12-19T15:48:07.312Z</lastmod>
   </url>
   <url>
     <loc>/archive.html</loc>
-    <lastmod>2022-10-17T02:09:23.957Z</lastmod>
+    <lastmod>2023-12-19T15:48:06.130Z</lastmod>
+  </url>
+  <url>
+    <loc>/posts/ddpms/part1/index.html</loc>
+    <lastmod>2023-12-19T15:48:04.963Z</lastmod>
+  </url>
+  <url>
+    <loc>/posts/ddpms/part3/index.html</loc>
+    <lastmod>2023-12-19T15:48:02.145Z</lastmod>
+  </url>
+  <url>
+    <loc>/posts/ddpms/part2/index.html</loc>
+    <lastmod>2023-12-19T15:48:04.118Z</lastmod>
+  </url>
+  <url>
+    <loc>/ddpms-series.html</loc>
+    <lastmod>2023-12-19T15:48:05.573Z</lastmod>
   </url>
   <url>
     <loc>/index.html</loc>
-    <lastmod>2022-10-17T02:09:24.289Z</lastmod>
-  </url>
-  <url>
-    <loc>/blog.html</loc>
-    <lastmod>2022-10-17T02:09:24.652Z</lastmod>
+    <lastmod>2023-12-19T15:48:06.618Z</lastmod>
   </url>
 </urlset>
