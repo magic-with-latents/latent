@@ -46,7 +46,7 @@ q(x_{1:T}\vert x_{0})
 :=\prod_{t=1}^{T}\mathcal{N}(x_{t};\sqrt{1-\beta_{t}} x_{t-1},\ \beta_{t}\bf I) \tag{1}
 $$
 
-As a refresher, $q(x_{0:T})$ is known as the **forward distribution** and $q(x_{t}\vert x_{t-1}$ is referred as **forward diffusion kernel**
+As a refresher, $q(x_{0:T})$ is known as the **forward distribution** and $q(x_{t}\vert x_{t-1})$ is referred as **forward diffusion kernel**
 
 <details>
 <summary><b>Show the code</b></summary>
@@ -191,7 +191,7 @@ $$
 q(x_{t}\vert x_{0}) = \mathcal{N}(x_{t};\sqrt{\bar{\alpha_{t}}} x_{0},\ (1 - \bar{\alpha_{t}}) \ \bf{I}) \tag {2}
 $$
 
-Ha! The above equation is nice.Given the original image, we can now sample at any arbitrary timestep without simulating the entire Markov chain till that step. Before coding it up, let's recap of what we did and achieve:
+Ha! The above equation is nice. Given the original image, we can now sample at any arbitrary timestep without simulating the entire Markov chain till that step. Before coding it up, let's recap of what we did and achieve:
 
 1. We figured out that in the original formulation, we need to simulate the Markov chain to the step for which we want to sample.
 2. We reparameterized $\beta$ in terms of $\alpha$
@@ -285,8 +285,8 @@ where the parameters of the multivariate Gaussian are time-dependent and are to 
 
 A few things to note:
 
-1. $p(x_{0:T})$ is the **reverse distribution** and $p(x_{t-1} | x_{t})$ is known as the **reverse diffusion kernel**
-2. $\mu_{\theta}(x_{t}, t), \Sigma_{\theta}(x_{t}$ are the learnable parameters of the reverse distribution
+1. $p_{\theta}(x_{0:T})$ is the **joint reverse distribution** and $p_{\theta}(x_{t-1} | x_{t})$ is known as the **reverse diffusion kernel**
+2. $\mu_{\theta}(x_{t}, t), \Sigma_{\theta}(x_{t}$, t) are the learnable parameters of the reverse distribution
 3. The forward process can be seen as pushing the sample off the data mainfold, turning it into noise. The reverse process can be seen as pushing the sample back to the manifold by removing the noise. (Words taken from Ari Seff's [tutorial](https://www.youtube.com/watch?v=fbLgFrlTnGU) because I don't think there is any better way to put it.)
 4. $p(x_{T})$ is nothing but $q(x_{T})$ i.e. the point where the forward process ends is the starting point of the reverse process.
 5. There can be `n` number of pathways to arrive at a sample $p_{\theta}(x_{0})$ starting from a noise sample. To obtain $p_{\theta}(x_{0})$, we would then be required to integrate over all the possible pathways i.e. $p_{\theta}(x_{0}) = \int p_{\theta}(x_{0:T})dx_{1:T}$
