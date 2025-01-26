@@ -1,0 +1,15 @@
+
+Welcome to our new series on Flow Matching, commonly referred to as Flow Models in the literature. Flow matching is a new generative modeling method that combines the advantages of Continuous Normalizing Flows (CNFs) and Diffusion models. If you are familiar with our DDPMs series, you'll recognize our approach: start with fundamental mathematical concepts and gradually build complexity. We will follow the same strategy in this series. This first post focuses on vector fields and velocity fields in detail. 
+
+# Vector Fields
+
+While vector fields are used to describe physical phenomena like electromagnetism, gravity, fluid flow, etc., our focus will be on their mathematical properties. Understanding the mathematics of vector fields will help you understand the terms in flow models much better. 
+
+Strictly speaking, a vector field is a function mapping a d-dimensional input to a d-dimensional output where each point in this space is associated with a vector, and each vector has a magnitude and a direction associated with it. 
+
+Here is how a vector field in 2D space looks like:
+
+These vectors may represent anything in this space. For example, you can use these vectors to define the force of gravity at different points in this space. Depending on the quantity represented by these vectors, you can expect that the magnitude of these vectors differ for different points in this space. 
+
+A practical consequence of this variability in magnitude is that vectors in visualizations are often not drawn to scale. Keeping the magnitude the same when drawing these vectors makes the visualization less cluttered and more aesthetically pleasing. Magnitude is important information. Hence, people often use color codes to represent vectors of different magnitudes in the visualizations. Here is a simple demonstration:
+
