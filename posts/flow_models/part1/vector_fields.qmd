@@ -1,8 +1,8 @@
 ---
 title: "Vector Fields"
 subtitle: "An Introduction to Vector Fields and Velocity Fields."
-author: "Aakash Kumar Nain ([@A_K_Nain](https:twitter.com/A_K_Nain))"
-date: "2022-08-01"
+author: "Aakash Kumar Nain ([@A_K_Nain](https://x.com/A_K_Nain))"
+date: "2025-02-10"
 categories: [vector fields, flow models]
 image: ""
 format:
@@ -14,10 +14,10 @@ execute:
   echo: false
 citation:
   type: "post-weblog"
-  title: "random variables"
+  title: "vector fields"
   container-title: "The Latent"
   author: "Aakash Kumar Nain"
-  issued: "2025-10-02"
+  issued: "2025-02-10"
   url: https://magic-with-latents.github.io/latent/posts/flow_models/part1/
 ---
 
