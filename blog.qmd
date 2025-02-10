@@ -4,7 +4,6 @@ page-layout: full
 title-block-banner: false
 toc: true
 listing:
-  listing:
   - id: ddpms
     contents: posts/ddpms/
     sort: "date desc"
