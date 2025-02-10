@@ -26,11 +26,11 @@ listing:
 ---
 
 
-## Denoising Diffusion Probabilistic Models (DDPMs) 
-:::{#ddpms}
+## Flow Models: A New Era in Generative AI!
+:::{#flow_models}
 :::
 
 
-## Flow Models: A new era!
-:::{#flow_models}
+## Denoising Diffusion Probabilistic Models (DDPMs) 
+:::{#ddpms}
 :::
