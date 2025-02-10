@@ -16,9 +16,9 @@ citation:
   type: "post-weblog"
   title: "vector fields"
   container-title: "The Latent"
-  author: "Aakash Kumar Nain"
+  author: "Aakash Nain"
   issued: "2025-02-10"
-  url: https://magic-with-latents.github.io/latent/posts/flow_models/part1/
+  url: https://magic-with-latents.github.io/latent/posts/flow_models/part1/vector_fields.html
 ---
 
 
