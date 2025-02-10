@@ -4,12 +4,14 @@
     "items": [
       "/posts/ddpms/part3/index.html",
       "/posts/ddpms/part2/index.html",
-      "/posts/ddpms/part1/index.html"
+      "/posts/ddpms/part1/index.html",
+      "/posts/flow_models/part1/vector_fields.html"
     ]
   },
   {
     "listing": "/archive.html",
     "items": [
+      "/posts/flow_models/part1/vector_fields.html",
       "/posts/ddpms/part3/index.html",
       "/posts/ddpms/part2/index.html",
       "/posts/ddpms/part1/index.html"

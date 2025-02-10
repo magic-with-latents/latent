@@ -2,11 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>/blog.html</loc>
-    <lastmod>2023-12-19T15:48:07.312Z</lastmod>
+    <lastmod>2025-02-10T16:35:13.029Z</lastmod>
   </url>
   <url>
     <loc>/archive.html</loc>
-    <lastmod>2023-12-19T15:48:06.130Z</lastmod>
+    <lastmod>2025-02-10T16:35:12.237Z</lastmod>
   </url>
   <url>
     <loc>/posts/ddpms/part1/index.html</loc>
@@ -27,5 +27,9 @@
   <url>
     <loc>/index.html</loc>
     <lastmod>2023-12-19T15:48:06.618Z</lastmod>
+  </url>
+  <url>
+    <loc>/posts/flow_models/part1/vector_fields.html</loc>
+    <lastmod>2025-02-10T16:35:11.553Z</lastmod>
   </url>
 </urlset>

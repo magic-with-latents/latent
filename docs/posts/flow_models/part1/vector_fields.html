@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Aakash Kumar Nain (@A_K_Nain)">
+<meta name="dcterms.date" content="2025-02-10">
 
-<title>The Latent: Code the Maths - Archive</title>
+<title>The Latent: Code the Maths - Vector Fields</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,24 +25,22 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -61,35 +61,6 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-date','listing-title',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-subtitle","listing-image","listing-description"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
 
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -103,7 +74,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../../index.html">
     <span class="navbar-title">The Latent: Code the Maths</span>
     </a>
   </div>
@@ -119,11 +90,11 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text"></span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./blog.html" rel="" target="">
+    <a class="nav-link" href="../../../blog.html" rel="" target="">
  <span class="menu-text">Blog</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./archive.html" rel="" target="" aria-current="page">
+    <a class="nav-link" href="../../../archive.html" rel="" target="">
  <span class="menu-text">Archive</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -157,23 +128,50 @@ ul.task-list li input[type="checkbox"] {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#vector-fields" id="toc-vector-fields" class="nav-link active" data-scroll-target="#vector-fields">Vector Fields</a></li>
+  <li><a href="#velocity-field" id="toc-velocity-field" class="nav-link" data-scroll-target="#velocity-field">Velocity Field</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
-<main class="content column-page" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Archive</h1>
-</div>
+<h1 class="title">Vector Fields</h1>
+<p class="subtitle lead">An Introduction to Vector Fields and Velocity Fields.</p>
+  <div class="quarto-categories">
+    <div class="quarto-category">vector fields</div>
+    <div class="quarto-category">flow models</div>
+  </div>
+  </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Aakash Kumar Nain (<a href="https://x.com/A_K_Nain"><span class="citation" data-cites="A_K_Nain">@A_K_Nain</span></a>) </p>
+          </div>
+  </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">February 10, 2025</p>
+    </div>
+  </div>
   
     
   </div>
@@ -181,93 +179,47 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
+<p>Welcome to our new series on Flow Matching, commonly referred to as Flow Models in the literature. Flow matching is a new generative modeling method that combines the advantages of Continuous Normalizing Flows (CNFs) and Diffusion models. If you are familiar with our DDPMs series, you’ll recognize our approach: start with fundamental mathematical concepts and gradually build complexity. We will follow the same strategy in this series. This first post focuses on vector fields and velocity fields in detail.</p>
+<section id="vector-fields" class="level1">
+<h1>Vector Fields</h1>
+<p>While vector fields are used to describe physical phenomena like electromagnetism, gravity, fluid flow, etc., our focus will be on their&nbsp;mathematical properties. Understanding the mathematics of vector fields will help you understand the terms in flow models much better.</p>
+<p>Strictly speaking, a vector field is a function mapping a d-dimensional input to a d-dimensional output where each point in this space is associated with a vector, and each vector has a magnitude and a direction associated with it.</p>
+<p>Here is how a vector field in 2D space looks like:</p>
+<p><br><img src="../images/vf_1.png" class="img-fluid"><br><br></p>
+<p>These vectors may represent anything in this space. For example, you can use these vectors to define the force of gravity at different points in this space. Depending on the quantity represented by these vectors, you can expect that the magnitude of these vectors differ for various points in this space.</p>
+<p>A practical consequence of this variability in magnitude is that vectors in visualizations are often not drawn to scale. Keeping the magnitude the same when drawing these vectors makes the visualization less cluttered and more aesthetically pleasing. Magnitude is critical information. Hence, people often use color codes to represent vectors of different magnitudes in the visualizations. Here is a simple demonstration:</p>
+<p><br><img src="../images/vf_2.png" class="img-fluid"><br></p>
+</section>
+<section id="velocity-field" class="level1">
+<h1>Velocity Field</h1>
+<p>You’ll encounter the term ‘velocity’ frequently when learning about Flow Matching. A&nbsp;velocity field&nbsp;is a specific type of vector field. Imagine you are watching leaves floating down a river. At different points across the river’s width, the leaves might be moving at different speeds and in slightly different directions. A velocity field is a mathematical way to describe this: it’s a representation that shows how velocity changes across a spatial region. While velocity fields are commonly used in fluid dynamics, we’ll focus on the intuition needed for flow models and avoid getting too deep into fluid mechanics.</p>
+<p>Simply put, a velocity field describes how a point moves (direction and speed) in a spatial region over a given interval, say <span class="math inline">\(t ∈ [0, 1]\)</span>. The velocity is not constant; it can change from point to point, illustrating flow patterns. This change in velocity across different locations is known as spatial variation.</p>
+<p>But how or where is it used in flow models? We will talk about it in detail in the next chapter. It will be easier to connect the dots once you understand the other underlying concepts of flow models.</p>
+</section>
+<section id="references" class="level1">
+<h1>References</h1>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=rB83DpBJQsE&amp;t=48s">Divergence and Curl</a></li>
+<li><a href="https://teaching.smp.uq.edu.au/scims/Adv_calculus/Velocity_field.html">Velocity Fields</a></li>
+<li><a href="https://www.khanacademy.org/math/multivariable-calculus/thinking-about-multivariable-function/visualizing-vector-valued-functions/v/vector-fields-introduction">Vector Fields: An introduction</a></li>
+<li><a href="https://drscotthawley.github.io/blog/posts/FlowModels.html">Flow With What You Know</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Vector_field">Vector Field</a></li>
+</ul>
 
 
+</section>
 
-
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="vector fields,flow models" data-listing-date-sort="1739125800000" data-listing-file-modified-sort="1739205169230" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3">
-<div class="body">
-<a href="./posts/flow_models/part1/vector_fields.html">
-<h3 class="no-anchor listing-title">
-Vector Fields
-</h3>
-<div class="listing-subtitle">
-An Introduction to Vector Fields and Velocity Fields.
-</div>
-</a>
-</div>
-<div class="metadata">
-<a href="./posts/flow_models/part1/vector_fields.html">
-<div class="listing-date">
-Feb 10, 2025
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="diffusion models,generative modelling,deep learning" data-listing-date-sort="1662057000000" data-listing-file-modified-sort="1737893194948" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="19">
-<div class="body">
-<a href="./posts/ddpms/part3/index.html">
-<h3 class="no-anchor listing-title">
-A deep dive into DDPMs
-</h3>
-<div class="listing-subtitle">
-DDPMs - Part 3
-</div>
-</a>
-</div>
-<div class="metadata">
-<a href="./posts/ddpms/part3/index.html">
-<div class="listing-date">
-Sep 2, 2022
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-categories="diffusion models,generative modelling,deep learning" data-listing-date-sort="1659465000000" data-listing-file-modified-sort="1703000848595" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="29">
-<div class="body">
-<a href="./posts/ddpms/part2/index.html">
-<h3 class="no-anchor listing-title">
-All you need to know about Gaussian distribution
-</h3>
-<div class="listing-subtitle">
-DDPMs - Part 2
-</div>
-</a>
-</div>
-<div class="metadata">
-<a href="./posts/ddpms/part2/index.html">
-<div class="listing-date">
-Aug 3, 2022
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="3" data-categories="linear algebra,diffusion models" data-listing-date-sort="1659292200000" data-listing-file-modified-sort="1703000848590" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7">
-<div class="body">
-<a href="./posts/ddpms/part1/index.html">
-<h3 class="no-anchor listing-title">
-Fresher on Random Variables
-</h3>
-<div class="listing-subtitle">
-DDPMs - Part 1 (Optional)
-</div>
-</a>
-</div>
-<div class="metadata">
-<a href="./posts/ddpms/part1/index.html">
-<div class="listing-date">
-Aug 1, 2022
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div></main> <!-- /main -->
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@misc{nain2025,
+  author = {Nain, Aakash},
+  title = {Vector Fields},
+  date = {2025-02-10},
+  url = {https://magic-with-latents.github.io/latent/posts/flow_models/part1/vector_fields.html},
+  langid = {en}
+}
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-nain2025" class="csl-entry quarto-appendix-citeas" role="listitem">
+Nain, Aakash. 2025. <span>“Vector Fields.”</span> <em>The Latent</em>
+(blog). February 10, 2025. <a href="https://magic-with-latents.github.io/latent/posts/flow_models/part1/vector_fields.html">https://magic-with-latents.github.io/latent/posts/flow_models/part1/vector_fields.html</a>.
+</div></div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
