@@ -1,0 +1,27 @@
+/* body {
+  background-color: rgba(255, 255, 255, 0.372);
+} */
+
+body {
+  background-color: rgba(255, 255, 255, 0.372);
+}
+
+/* div.sourceCode,
+pre.sourceCode {
+  background-color: #f6f8fa !important;
+  border: 1px solid #d0d7de;
+  border-left: 3px solid #0969da;
+  border-radius: 6px;
+}
+
+pre.sourceCode code {
+  color: #24292f !important;
+}
+
+:not(pre) > code {
+  color: #0550ae !important;
+  background-color: #ddf4ff !important;
+  border-radius: 3px;
+  padding: 0.15em 0.4em;
+  font-size: 0.875em;
+} */

@@ -7,9 +7,13 @@ categories: [linear algebra, diffusion models]
 image: ""
 format:
   html:
+    theme: default
+    css: style.css
     code-fold: true
     code-summary: "Show the code"
-    highlight-style: oblivion
+    highlight-style:
+      light: github
+      dark: dracula
 execute: 
   echo: false
 citation:
