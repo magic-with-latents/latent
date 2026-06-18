@@ -7,6 +7,8 @@ website:
   site-url: ""
   description: "Welcome to The Latent, a place to learn Data Science, Machine Learning, and Deep Learning"
   navbar:
+    background: "#002b36"
+    foreground: "#839496"
     right:
       - icon: github
         href: https://github.com/magic-with-latents
@@ -27,7 +29,7 @@ website:
 format:
   html:
     theme: theme.scss
-    highlight-style: oblivion
+    # highlight-style: oblivion
 
 
 
