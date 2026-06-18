@@ -2,34 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>/blog.html</loc>
-    <lastmod>2025-02-10T16:35:13.029Z</lastmod>
+    <lastmod>2025-02-10T16:34:31.000Z</lastmod>
   </url>
   <url>
     <loc>/archive.html</loc>
-    <lastmod>2025-02-10T16:35:12.237Z</lastmod>
+    <lastmod>2023-12-19T15:47:28.000Z</lastmod>
   </url>
   <url>
     <loc>/posts/ddpms/part1/index.html</loc>
-    <lastmod>2023-12-19T15:48:04.963Z</lastmod>
+    <lastmod>2026-06-18T18:09:33.527Z</lastmod>
   </url>
   <url>
     <loc>/posts/ddpms/part3/index.html</loc>
-    <lastmod>2023-12-19T15:48:02.145Z</lastmod>
-  </url>
-  <url>
-    <loc>/posts/ddpms/part2/index.html</loc>
-    <lastmod>2023-12-19T15:48:04.118Z</lastmod>
-  </url>
-  <url>
-    <loc>/ddpms-series.html</loc>
-    <lastmod>2023-12-19T15:48:05.573Z</lastmod>
-  </url>
-  <url>
-    <loc>/index.html</loc>
-    <lastmod>2025-02-11T16:12:24.991Z</lastmod>
+    <lastmod>2026-06-18T18:09:34.921Z</lastmod>
   </url>
   <url>
     <loc>/posts/flow_models/part1/vector_fields.html</loc>
-    <lastmod>2025-02-10T16:35:11.553Z</lastmod>
+    <lastmod>2025-02-10T16:32:49.000Z</lastmod>
+  </url>
+  <url>
+    <loc>/posts/ddpms/part2/index.html</loc>
+    <lastmod>2026-06-18T18:09:37.019Z</lastmod>
+  </url>
+  <url>
+    <loc>/ddpms-series.html</loc>
+    <lastmod>2023-12-19T15:47:28.000Z</lastmod>
+  </url>
+  <url>
+    <loc>/index.html</loc>
+    <lastmod>2026-05-08T18:47:33.086Z</lastmod>
   </url>
 </urlset>
